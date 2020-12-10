@@ -23,7 +23,7 @@ const App = () => {
     <>
       <BrowserRouter history={history}>
         <MainLayout>
-          <NavBar />
+          {/* <NavBar /> */}
           <Switch>
             <Route path="/admin" component={Auth(Admin,true)}/>
             <Route path="/logout" component={Auth(UserLogout,true)}/>

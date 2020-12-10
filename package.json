@@ -1,7 +1,7 @@
 {
   "name": "pet-haven",
   "version": "1.0.0",
-  "description": "Express API for final project",
+  "description": "Final project project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

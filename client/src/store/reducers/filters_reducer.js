@@ -3,7 +3,8 @@ import {
     SET_AGE,
     SET_SIZE,
     SET_GENDER,
-    SET_LOCATION
+    SET_LOCATION,
+    SET_DISTANCE
 } from '../types';
 
 const initialState = {
@@ -26,6 +27,8 @@ const filtersReducer = (state=initialState, action) => {
             return {...state, age: action.payload}
         case SET_LOCATION:
             return {...state, location: action.payload}
+        case SET_DISTANCE:
+            return {...state, distance: action.payload}
         default:
             return state;
     }

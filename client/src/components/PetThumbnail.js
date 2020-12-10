@@ -10,34 +10,36 @@ import Typography from '@material-ui/core/Typography';
 
 const PetThumbnail = props => {
     return(
-        <Card style={{maxWidth: 345}}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt="Contemplative Reptile" 
-            height="140"
-            image={props.image}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
+      <div className="m-3">
+          <Card style={{maxWidth: 345}}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              alt="Contemplative Reptile" 
+              height="140"
+              image={props.image}
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                Lizard
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                across all continents except Antarctica
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button size="small" color="primary">
+              Share
+            </Button>
+            <Button size="small" color="primary">
+              Learn More
+            </Button>
+          </CardActions>
+        </Card>
+      </div>
     );
 };
 
