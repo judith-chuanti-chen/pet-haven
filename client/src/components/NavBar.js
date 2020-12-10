@@ -15,8 +15,8 @@ const NavBar = () => {
                     <Nav.Link href="#my-account">MyAccount</Nav.Link> 
                 </Nav>
                 <Nav>
-                    <Nav.Link href="sign-up">Sign Up</Nav.Link>
-                    <Nav.Link href="log-in">Log In</Nav.Link>
+                    <Nav.Link href="/sign-up">Sign Up</Nav.Link>
+                    <Nav.Link href="/log-in">Log In</Nav.Link>
                 </Nav>
             </Navbar>
         </>

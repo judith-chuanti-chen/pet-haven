@@ -2,6 +2,7 @@ import {
   faHome,
   faSignInAlt,
   faSignOutAlt,
+  faUserAlt,
   faClipboard,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,6 +18,13 @@ export const RouteLinks = {
       icon: faSignInAlt,
       text: "Login",
       link: "/log-in",
+      color: "black",
+      restricted: true
+    },
+    {
+      icon: faUserAlt,
+      text: "Sign Up",
+      link: "/sign-up",
       color: "black",
       restricted: true
     },
