@@ -91,10 +91,15 @@
 
 .profile-nav-info .address {
   display: flex;
+  flex-direction: column;
   font-weight: bold;
   color: black;
   width: 100%;
   justify-content: flex-start;
+}
+
+.address p {
+  margin: 0;
 }
 
 .profile-side {

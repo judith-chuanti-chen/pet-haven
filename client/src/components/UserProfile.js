@@ -33,11 +33,9 @@ const UserProfile = (props) => {
           </h3>
           <div class="address">
             <p className="state">
-              {user.userData.state}, {user.userData.city}
+              {user.userData.city}, {user.userData.state},
             </p>
-            <span className="country">
-              {user.userData.country}, {user.userData.zipcode}
-            </span>
+            <span className="country">USA, {user.userData.zipcode}</span>
           </div>
         </div>
       </div>
@@ -49,7 +47,7 @@ const UserProfile = (props) => {
                 style={{ marginRight: "5px" }}
                 icon={faPhone}
               ></FontAwesomeIcon>
-              1234556788
+              {user.userData.phone}
             </p>
             <p className="email">
               <FontAwesomeIcon
