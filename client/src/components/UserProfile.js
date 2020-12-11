@@ -1,0 +1,99 @@
+import { React, useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faMailBulk } from "@fortawesome/free-solid-svg-icons";
+import img from "../blank-profile-picture-973460_640.png";
+import UserSignup from "./Users/UserSignup";
+import { useSelector } from "react-redux";
+
+const UserProfile = (props) => {
+  const [active, setActive] = useState([true, false]);
+  let user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
+
+  const handleClick = (e) => {
+    let newArr = active.map((entry) => {
+      return (entry = !entry);
+    });
+    setActive(newArr);
+    console.log(active);
+  };
+
+  return (
+    <div className="profile-container">
+      <div className="profile-header">
+        <div className="profile-img">
+          <img src={img} style={{ width: "250px" }} alt="" />
+        </div>
+        <div className="profile-nav-info">
+          <h3>
+            {user.userData.firstname} {user.userData.lastname}
+          </h3>
+          <div class="address">
+            <p className="state">
+              {user.userData.state}, {user.userData.city}
+            </p>
+            <span className="country">
+              {user.userData.country}, {user.userData.zipcode}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="main-body">
+        <div className="left-side">
+          <div className="profile-side">
+            <p className="mobile-number">
+              <FontAwesomeIcon
+                style={{ marginRight: "5px" }}
+                icon={faPhone}
+              ></FontAwesomeIcon>
+              1234556788
+            </p>
+            <p className="email">
+              <FontAwesomeIcon
+                style={{ marginRight: "5px" }}
+                icon={faMailBulk}
+              ></FontAwesomeIcon>
+              {user.userData.email}
+            </p>
+            <div className="user-bio">
+              <p style={{ fontWeight: "bold" }}>About Me</p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+              interdum justo varius, hendrerit sapien nec, lacinia mauris. Ut a
+              sem.
+            </div>
+          </div>
+        </div>
+        <div className="right-side">
+          <div className="mini-nav">
+            <ul>
+              <li
+                onClick={active[0] ? null : handleClick}
+                className={`${active[0] ? "active" : ""} fav-pets`}
+              >
+                Your Favorited Pets
+              </li>
+              <li
+                onClick={active[1] ? null : handleClick}
+                className={`${active[1] ? "active" : ""} update-profile`}
+              >
+                Update Profile
+              </li>
+            </ul>
+          </div>
+          <div
+            className={`${
+              active[1] ? "displayed" : "not-displayed"
+            } update-form`}
+          >
+            <UserSignup />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserProfile;
