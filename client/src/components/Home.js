@@ -14,6 +14,7 @@ const Home = () => {
                 </Jumbotron>
             <Container>
                 <SearchBar />
+                <PetThumbnail />
             </Container>
         </>
     );

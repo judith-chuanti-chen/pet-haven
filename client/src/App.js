@@ -8,10 +8,11 @@ import Admin from "./components/Users/Admin";
 import UserLogout from "./components/Users/UserLogout";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./normalize.css";
 import "./skeleton.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 // Higher Order Component so all routes will use same layout
 import MainLayout from "./HigherOrderComponents/MainLayout";
