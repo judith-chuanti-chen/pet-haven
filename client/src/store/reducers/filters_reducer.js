@@ -8,11 +8,11 @@ import {
 } from '../types';
 
 const initialState = {
-    type: '',
-    size: '',
-    gender: '',
-    age: '',
-    distance: '',
+    type: '0',
+    size: 'all',
+    gender: 'all',
+    age: 'all',
+    distance: 'anywhere',
     location: ''
 }
 const filtersReducer = (state=initialState, action) => {
