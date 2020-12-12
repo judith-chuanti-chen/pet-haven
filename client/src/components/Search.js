@@ -29,16 +29,15 @@ const Search = ({location}) => {
   };
   useEffect(() => {
     displaySearchResults();
-  }, []);
+  }, [location.search]);
   return (
     <>
       <Container>
         <Row><SearchBar /></Row>
         <Row className="flex align-content-center">
             {results.map(p => 
-              <Col sm="6" md="4">
+              <Col key={p.id} sm="6" md="4">
                 <PetThumbnail 
-                  key={p.id} 
                   image={p.primary_photo_cropped ? p.primary_photo_cropped.full : p.photos[0]}
                   name={p.name}
                   age={p.age}
