@@ -15,9 +15,10 @@ const Search = ({location, favPets}) => {
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
-  
+  const [loading, setLoading] = useState(true);
   //callback - setTotalPages
   const getSearchResults = (callback) => {
+    setLoading(true);
     const params = new URLSearchParams(location.search);
     pf.animal.search({
       type: params.get("type"),
@@ -32,25 +33,26 @@ const Search = ({location, favPets}) => {
     }).then(resp => {
       // Do something with resp.data.animals
       setResults(resp.data.animals);
-      console.log(resp.data.pagination.total_pages);
       if(callback){
         callback(resp.data.pagination.total_pages);
       }
     }).catch(err => {
       console.log(err)
+    }).finally(() => {
+        setLoading(false);
     });
   };
 
 
   useEffect(() => {
     getSearchResults();
-    console.log("new page");
+    // console.log("new page");
   }, [page]);
 
   useEffect(() => {
     setPage(1);
     getSearchResults(setTotalPage);
-    console.log("new results");
+    // console.log("new results");
   }, [location.search])
 
 
@@ -59,8 +61,7 @@ const Search = ({location, favPets}) => {
       <Container>
         <Row><SearchBar /></Row>
         <Row className="flex align-content-center">
-
-            {results.size > 0 ? results.map(p => 
+            {!loading ? results.map(p => 
               <Col key={p.id} sm="6" md="4">
                 <PetThumbnail 
                   id={p.id}
