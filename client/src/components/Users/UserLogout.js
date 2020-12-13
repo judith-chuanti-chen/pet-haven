@@ -1,14 +1,17 @@
 import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { deleteFavPet } from '../../store/actions/favPet_actions';
 import { logoutUser } from '../../store/actions/user_actions';
 
 const Logout = (props) => {
 
     const logout = useSelector(state => state.user);
+    const favPets = useSelector(state => state.favPets);
     const dispatch = useDispatch();
 
     useEffect(()=>{
         dispatch(logoutUser());
+        favPets.forEach(petId => dispatch(deleteFavPet(petId)));
     },[dispatch]);
 
     useEffect(()=>{

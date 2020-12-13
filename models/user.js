@@ -119,7 +119,7 @@ userSchema.statics.findByToken = function(token, callback){
                 console.log("models/user.js - findByToken err: " + err);
                 return callback(err);
             }
-            console.log('findByToken user'+ user);
+
             callback(null, user);
         })
     })

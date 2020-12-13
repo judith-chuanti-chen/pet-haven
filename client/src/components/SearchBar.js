@@ -37,17 +37,17 @@ const SearchBar = props => {
     return(
         <>
         <Form inline>
-            <Form.Row>
-                <Form.Group className="mr-3">
+            <Form.Row className="d-flex align-items-center flex-nowrap">
+                <Form.Group className="mr-3 d-flex align-items-center">
                     <Form.Label className="mr-2">Location</Form.Label>
-                    <Form.Control type="text" placeholder="Enter City, State, or ZIP" 
+                    <Form.Control className="mb-0" type="text" placeholder="Enter City, State, or ZIP" 
                                     name="location" value={location} 
                                     onChange={e => dispatch(setLocation(e.target.value))}/>
 
                 </Form.Group>
                 <Form.Group className="mr-3">
                     <Form.Label className="mr-2">Pet Type</Form.Label>
-                    <Form.Control as="select" defaultValue={type} onChange={e => dispatch(setType(e.target.value))}>
+                    <Form.Control className="mb-0" as="select" defaultValue={type} onChange={e => dispatch(setType(e.target.value))}>
                         <option value="0">Choose...</option>
                         <option value="dog">Dog</option>
                         <option value="cat">Cat</option>
@@ -55,7 +55,7 @@ const SearchBar = props => {
                 </Form.Group>
                 <Form.Group className="mr-3">
                     <Form.Label className="mr-2">Age</Form.Label>
-                    <Form.Control as="select" defaultValue={age} onChange={e => dispatch(setAge(e.target.value))}>
+                    <Form.Control className="mb-0" as="select" defaultValue={age} onChange={e => dispatch(setAge(e.target.value))}>
                         <option value="all">All</option>
                         <option value={type === "cat" ? "kitten" : "puppy"}>{type === "cat" ? "Kitten" : "Puppy"}</option>
                         <option value="young">Young</option>
@@ -65,7 +65,7 @@ const SearchBar = props => {
                 </Form.Group>
                 <Form.Group className="mr-3">
                     <Form.Label className="mr-2">Size</Form.Label>
-                    <Form.Control as="select" defaultValue={size} onChange={e => dispatch(setSize(e.target.value))}>
+                    <Form.Control className="mb-0" as="select" defaultValue={size} onChange={e => dispatch(setSize(e.target.value))}>
                         <option value="all">All</option>
                         <option value="small">Small</option>
                         <option value="medium">Medium</option>
@@ -75,7 +75,7 @@ const SearchBar = props => {
                 </Form.Group>
                 <Form.Group className="mr-3">
                     <Form.Label className="mr-2">Gender</Form.Label>
-                    <Form.Control as="select" defaultValue={gender} onChange={e => dispatch(setGender(e.target.value))}>
+                    <Form.Control className="mb-0" as="select" defaultValue={gender} onChange={e => dispatch(setGender(e.target.value))}>
                         <option value="all">All</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
@@ -83,7 +83,7 @@ const SearchBar = props => {
                 </Form.Group>
                 <Form.Group className="mr-3">
                     <Form.Label className="mr-2">Distance</Form.Label>
-                    <Form.Control as="select" defaultValue={distance} onChange={e => dispatch(setDistance(e.target.value))}>
+                    <Form.Control className="mb-0" as="select" defaultValue={distance} onChange={e => dispatch(setDistance(e.target.value))}>
                         <option value="anywhere">Anywhere</option>
                         <option value="10">10</option>
                         <option value="25">25</option>
@@ -91,9 +91,12 @@ const SearchBar = props => {
                         <option value="100">100</option>
                     </Form.Control>
                 </Form.Group>
-                <Button className="mr-3" variant="primary" type="submit" onClick={handleSubmit}>
-                    Search
-                </Button>
+                <div className="p-3">
+                    <Button className="mr-3 mb-0" variant="primary" type="submit" onClick={handleSubmit}>
+                        Search
+                    </Button>
+                </div>
+                
             </Form.Row>
         </Form>
         {valid ? null : <div className="error-label">For 'Pet Type', please choose either 'Dog' or 'Cat'</div>}

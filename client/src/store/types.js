@@ -11,3 +11,8 @@ export const SET_SIZE = "set_size";
 export const SET_GENDER = "set_gender";
 export const SET_LOCATION = "set_loation";
 export const SET_DISTANCE = "set_distance";
+
+//Favorite Pets
+export const ADD_FAV = "add_fav";
+export const DELETE_FAV = "delete_fav";
+
