@@ -7,19 +7,23 @@ import UserSignup from "./components/Users/UserSignup";
 import UserProfile from "./components/UserProfile";
 import Admin from "./components/Users/Admin";
 import UserLogout from "./components/Users/UserLogout";
+import { useSelector } from "react-redux"; 
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 import "./normalize.css";
 import "./skeleton.css";
-import "./App.css";
 
 // Higher Order Component so all routes will use same layout
 import MainLayout from "./HigherOrderComponents/MainLayout";
 import Auth from "./HigherOrderComponents/auth";
 
+
 const App = () => {
   const history = createBrowserHistory();
+  
+  
   return (
     <>
       <BrowserRouter history={history}>
@@ -30,8 +34,8 @@ const App = () => {
             <Route path="/logout" component={Auth(UserLogout, true)} />
             <Route path="/sign-up" component={Auth(UserSignup, false)} />
             <Route path="/log-in" component={Auth(UserLogin, false)} />
-            <Route path="/search" component={Search} />
             <Route path="/profile" component={Auth(UserProfile, true)} />
+            <Route path="/search" component={Auth(Search)} />
             <Route exact path="/" component={Auth(Home)} />
           </Switch>
         </MainLayout>

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const user = require('./routes/user');
+const favoritePet = require('./routes/favoritePet');
 const app = express();
 
 
@@ -31,6 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('client/build'));
 
 app.use('/api/users', user);
+app.use('/api/favoritePets', favoritePet);
 
 if (process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {

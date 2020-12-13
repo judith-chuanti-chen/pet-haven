@@ -35,8 +35,14 @@
 }
 
 .error-label {
-  color: red;
-  font-weight: bold;
+  background-color: rgb(238, 177, 177);
+  border: rgb(199, 52, 52) solid 2px;
+  border-radius: 1em;
+  padding: 1em;
+}
+
+.like:hover {
+  background-color: rgb(238, 81, 81);
 }
 
 /* User-Profile Style */

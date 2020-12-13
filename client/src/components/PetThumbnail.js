@@ -1,45 +1,44 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { favorite, unfavorite } from '../utils/manageFavoritePet';
+import Card from 'react-bootstrap/Card';
+import {Button, Row, Col, ButtonGroup} from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import Skeleton from 'react-loading-skeleton';
 
 const PetThumbnail = props => {
+    const user = useSelector(state => state.user);
+    const [like, setLike] = useState(props.isLiked);
+   
+    const toggleLike = () => {
+      if(like){
+        unfavorite(user.userData.id, props.id);
+        setLike(false);
+      }else{
+        favorite(user.userData.id, props.id);
+        setLike(true);
+      }
+    };
+
     return(
-      <div className="m-3">
-          <Card style={{maxWidth: 345}}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              alt="Contemplative Reptile" 
-              height="140"
-              image={props.image}
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                across all continents except Antarctica
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </CardActions>
-        </Card>
-      </div>
+      <Card className="m-3 shadow" style={{ width: '27rem', height: '29em', borderTopLeftRadius:'0.5em', borderTopRightRadius:'0.5em'}}>
+        <Card.Img variant="top" style={{height: '18em', objectFit: 'cover', borderTopLeftRadius:'0.5em', borderTopRightRadius:'0.5em'}} src={props.image} />
+          <Card.Body className="d-flex flex-column">
+            <Card.Text className="text-center">
+              <b>{props.name || <Skeleton />}</b>
+              <br/>{props.age } | {props.gender}
+            </Card.Text>
+            <ButtonGroup className="mt-auto">
+              <Button variant="light" onClick={toggleLike}>
+                <FontAwesomeIcon icon={like ? solidHeart : regularHeart } size="lg"/>
+                </Button>
+              <Button  variant="primary">Check Me Out!</Button>
+            </ButtonGroup>
+          </Card.Body>
+      </Card>
     );
 };
 
