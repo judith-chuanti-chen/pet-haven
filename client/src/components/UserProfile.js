@@ -33,7 +33,7 @@ const UserProfile = (props) => {
           </h3>
           <div class="address">
             <p className="state">
-              {user.userData.city}, {user.userData.state},
+              {user.userData.city}, {user.userData.state}
             </p>
             <span className="country">USA, {user.userData.zipcode}</span>
           </div>
