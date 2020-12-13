@@ -3,9 +3,11 @@ import { useHistory } from "react-router-dom";
 import pf from "../petfinder";
 import { useSelector } from 'react-redux'
 import PetThumbnail from "./PetThumbnail";
+import LoadingThumbnails from './LoadingThumbnails';
 import SearchBar from './SearchBar';
 import {Container, Row, Col} from 'react-bootstrap';
 import Paginations from "./Pagination";
+
 
 const Search = ({location, favPets}) => {
   const history = useHistory();
@@ -16,13 +18,14 @@ const Search = ({location, favPets}) => {
   
   //callback - setTotalPages
   const getSearchResults = (callback) => {
+    const params = new URLSearchParams(location.search);
     pf.animal.search({
-      type: filter.type,
-      age: filter.age === "all" ? null : filter.age,
-      size: filter.size === "all" ? null : filter.size,
-      gender: filter.gender === "all" ? null : filter.gender,
-      location: filter.location === "anywhere" ? null : filter.location, 
-      distance: parseInt(filter.distance) ? parseInt(filter.distance) : null,
+      type: params.get("type"),
+      age: params.get("age") === "all" ? null : params.get("age"),
+      size: params.get("size") === "all" ? null : params.get("size"),
+      gender: params.get("gender") === "all" ? null : params.get("gender"),
+      location: params.get("location") === "anywhere" ? null : params.get("location"), 
+      distance: parseInt(params.get("distance")) ? parseInt(params.get("distance")) : null,
       page: page,
       limit: 24,
 
@@ -41,11 +44,13 @@ const Search = ({location, favPets}) => {
 
   useEffect(() => {
     getSearchResults();
+    console.log("new page");
   }, [page]);
 
   useEffect(() => {
     setPage(1);
     getSearchResults(setTotalPage);
+    console.log("new results");
   }, [location.search])
 
 
@@ -54,7 +59,8 @@ const Search = ({location, favPets}) => {
       <Container>
         <Row><SearchBar /></Row>
         <Row className="flex align-content-center">
-            {results.map(p => 
+
+            {results.size > 0 ? results.map(p => 
               <Col key={p.id} sm="6" md="4">
                 <PetThumbnail 
                   id={p.id}
@@ -65,7 +71,7 @@ const Search = ({location, favPets}) => {
                   isLiked={favPets.has(p.id)}
                   />
               </Col>
-              )}
+              ) : <LoadingThumbnails count={24}/>}
         </Row>
         <Row className="justify-content-center">
           <Paginations handleChange={setPage} count={totalPage} page={page}/>
