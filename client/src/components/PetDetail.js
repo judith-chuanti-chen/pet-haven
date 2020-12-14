@@ -10,12 +10,11 @@ import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope, faMapMarker, faPhoneSquare } from "@fortawesome/free-solid-svg-icons"
 
 
-const PetDetail = props => {
-    const user = useSelector(state => state.user);
-    const [like, setLike] = useState(props.isLiked);
+const PetDetail = ({user, location, favPets}) => {
     const [result, setResult] = useState();
     const [loading, setLoading] = useState(true);
-    const params = new URLSearchParams(props.location.search);
+    const params = new URLSearchParams(location.search);
+    const [like, setLike] = useState(favPets.has(parseInt(params.get("id"))));
     const [petInfo, setPetInfo] = useState({id: params.get("id"),
                                             name: params.get("name"),
                                             gender: params.get("gender"),
@@ -45,10 +44,10 @@ const PetDetail = props => {
 
     const toggleLike = () => {
       if(like){
-        unfavorite(user.userData.id, props.id);
+        unfavorite(user.userData._id, petInfo.id);
         setLike(false);
       }else{
-        favorite(user.userData.id, props.id);
+        favorite(user.userData._id, petInfo.id);
         setLike(true);
       }
     };
