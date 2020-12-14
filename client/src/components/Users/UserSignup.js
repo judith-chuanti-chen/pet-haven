@@ -23,6 +23,7 @@ const SignUpSchema = Yup.object().shape({
   country: Yup.string().required("Required Field"),
   zipcode: Yup.number().required("Required Field"),
   role: Yup.string(),
+  about: Yup.string(),
 });
 
 class UserSignup extends Component {
@@ -56,6 +57,7 @@ class UserSignup extends Component {
             country: "US",
             zipcode: 98109,
             role: 0,
+            about: "I love dogs and cats!",
           }}
           validationSchema={SignUpSchema}
           onSubmit={(values) => {
@@ -270,6 +272,22 @@ class UserSignup extends Component {
                     ></input>
                     {errors.role && touched.role ? (
                       <div className="error-label">{errors.role}</div>
+                    ) : null}
+                  </div>
+                </div>
+                <div>About Yourself</div>
+                <div className="form-group">
+                  <div className="twelve columns mt-2 mb-4">
+                    <input
+                      type="about"
+                      name="about"
+                      onChange={handleChange}
+                      placeholder="Write Something About Yourself"
+                      value={values.about}
+                      className="u-full-width"
+                    ></input>
+                    {errors.about && touched.about ? (
+                      <div className="error-label">{errors.about}</div>
                     ) : null}
                   </div>
                 </div>

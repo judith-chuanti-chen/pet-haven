@@ -25,16 +25,6 @@ const SignUpSchema = Yup.object().shape({
 });
 
 class UserUpdate extends Component {
-  state = {
-    success: false,
-  };
-
-  componentDidUpdate() {
-    if (this.state.success) {
-      this.props.history.push("/profile");
-    }
-  }
-
   render() {
     return (
       <div style={{ marginTop: "20px" }} className="container form_container">
@@ -42,29 +32,24 @@ class UserUpdate extends Component {
         <Formik
           initialValues={{
             password: "",
-            firstname: "",
-            lastname: "",
-            address1: "",
+            firstname: this.props.user.userData.firstname,
+            lastname: this.props.user.userData.lastname,
+            address1: this.props.user.userData.address1,
             address2: "",
-            phone: "-",
-            city: "",
-            state: "",
-            country: "",
-            zipcode: "-",
+            phone: this.props.user.userData.phone,
+            city: this.props.user.userData.city,
+            state: this.props.user.userData.state,
+            country: this.props.user.userData.country,
+            zipcode: this.props.user.userData.zipcode,
             role: 0,
+            about: this.props.user.userData.about,
           }}
           validationSchema={SignUpSchema}
           onSubmit={(values) => {
             console.log(values);
             this.props
-              .dispatch(updateUser(this.props.user.userData.id, values))
-              .then((response) => {
-                if (this.props.user.success) {
-                  this.setState({
-                    success: true,
-                  });
-                }
-              });
+              .dispatch(updateUser(this.props.user.userData._id, values))
+              .then((response) => {});
           }}
         >
           {({
@@ -254,11 +239,23 @@ class UserUpdate extends Component {
                     ) : null}
                   </div>
                 </div>
+                <div>About Yourself</div>
+                <div className="form-group">
+                  <div className="twelve columns mt-2 mb-4">
+                    <input
+                      type="about"
+                      name="about"
+                      onChange={handleChange}
+                      placeholder="Type Something About Yourself"
+                      value={values.about}
+                      className="u-full-width"
+                    ></input>
+                    {errors.about && touched.about ? (
+                      <div className="error-label">{errors.about}</div>
+                    ) : null}
+                  </div>
+                </div>
                 <button type="submit">Update</button>
-                <br />
-                {this.state.success ? (
-                  <div className="error_label">Error, Please try again.</div>
-                ) : null}
               </form>
             );
           }}

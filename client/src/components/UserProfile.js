@@ -58,9 +58,7 @@ const UserProfile = ({ props, location }) => {
             </p>
             <div className="user-bio">
               <p style={{ fontWeight: "bold" }}>About Me</p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-              interdum justo varius, hendrerit sapien nec, lacinia mauris. Ut a
-              sem.
+              <p>{user.userData.about}</p>
             </div>
           </div>
         </div>

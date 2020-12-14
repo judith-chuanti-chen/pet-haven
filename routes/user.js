@@ -60,6 +60,7 @@ router.post("/login", (req, res) => {
             country: user.country,
             zipcode: user.zipcode,
             role: user.role,
+            about: user.about,
           },
         });
       });
@@ -72,14 +73,19 @@ router.get("/auth", auth, (req, res) => {
   res.json({
     auth: true,
     userData: {
-      id: req.user._id,
+      _id: req.user._id,
       email: req.user.email,
       firstname: req.user.firstname,
       lastname: req.user.lastname,
+      address1: req.user.address1,
+      address2: req.user.address2,
+      phone: req.user.phone,
       city: req.user.city,
       state: req.user.state,
+      country: req.user.country,
       zipcode: req.user.zipcode,
-      phone: req.user.phone,
+      role: req.user.role,
+      about: req.user.about,
     },
   });
 });
@@ -111,6 +117,7 @@ router.patch("/update/:id", auth, async (req, res) => {
       state,
       country,
       zipcode,
+      about,
     } = req.body;
     userToUpdate.password = password;
     userToUpdate.firstname = firstname;
@@ -122,11 +129,12 @@ router.patch("/update/:id", auth, async (req, res) => {
     userToUpdate.state = state;
     userToUpdate.country = country;
     userToUpdate.zipcode = zipcode;
+    userToUpdate.about = about;
     await userToUpdate.save();
-    res.status(200).json({ success: true });
+    res.status(200).json({ success: true, userData: userToUpdate });
   } catch (err) {
     console.log(err);
-    return res.json(err);
+    return res.status(500).json(err);
   }
 });
 

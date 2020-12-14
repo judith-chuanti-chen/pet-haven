@@ -32,6 +32,7 @@ const usersReducer = (state = {}, action) => {
       return {
         ...state,
         success: action.payload.success,
+        userData: action.payload.userData,
       };
     default:
       return state;

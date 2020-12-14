@@ -55,6 +55,7 @@ export function signupUser({
   country,
   zipcode,
   role,
+  about,
 }) {
   const request = axios
     .post("/api/users/register", {
@@ -70,6 +71,7 @@ export function signupUser({
       country,
       zipcode,
       role,
+      about,
     })
     .then((response) => response.data);
 
@@ -93,6 +95,7 @@ export function updateUser(
     country,
     zipcode,
     role,
+    about,
   }
 ) {
   const request = axios
@@ -108,6 +111,7 @@ export function updateUser(
       country,
       zipcode,
       role,
+      about,
     })
     .then((response) => response.data);
 
