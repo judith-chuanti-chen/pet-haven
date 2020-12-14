@@ -13,7 +13,7 @@ import { faEnvelope, faMapMarker, faPhoneSquare } from "@fortawesome/free-solid-
 const PetDetail = props => {
     const user = useSelector(state => state.user);
     const [like, setLike] = useState(props.isLiked);
-    const [result, setResult] = useState([]);
+    const [result, setResult] = useState();
     const [loading, setLoading] = useState(true);
     const params = new URLSearchParams(props.location.search);
     const [petInfo, setPetInfo] = useState({id: params.get("id"),
@@ -66,7 +66,7 @@ const PetDetail = props => {
     return (
         <>
             <Container>
-                {result.length > 0 ? <>
+                {!loading ? <>
                 <Row><SearchBar /></Row>
                 <Row>
                     <Card.Img variant="top" style={{height: '30em', objectFit: 'cover', borderTopLeftRadius:'0.5em', borderTopRightRadius:'0.5em'}} src={petInfo.image} />
