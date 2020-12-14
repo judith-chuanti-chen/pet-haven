@@ -32,14 +32,12 @@ const NavItems = (props) => {
 
   const showUserLinks = () => 
     RouteLinks.user.map((item, i) => {
-      console.log(item);
       return element(item, i);
     });
   
   const showLinks = () => {
     if(props.user.auth){
       if(props.user.userData.role === 0){
-        console.log('is user');
         return showUserLinks();
       }
       return showAdminLinks();

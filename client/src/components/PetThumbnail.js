@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { favorite, unfavorite } from '../utils/manageFavoritePet';
+import { addFavPet, deleteFavPet } from '../store/actions/favPet_actions';
 import Card from 'react-bootstrap/Card';
 import {Button, Row, Col, ButtonGroup} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,13 +13,15 @@ import Skeleton from 'react-loading-skeleton';
 const PetThumbnail = props => {
     const user = useSelector(state => state.user);
     const [like, setLike] = useState(props.isLiked);
-   
+    const dispatch = useDispatch();
     const toggleLike = () => {
       if(like){
         unfavorite(user.userData.id, props.id);
+        dispatch(deleteFavPet(props.id));
         setLike(false);
       }else{
         favorite(user.userData.id, props.id);
+        dispatch(addFavPet(props.id));
         setLike(true);
       }
     };

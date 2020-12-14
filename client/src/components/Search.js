@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import pf from "../petfinder";
 import { useSelector } from 'react-redux'
 import PetThumbnail from "./PetThumbnail";
 import LoadingThumbnails from './LoadingThumbnails';
 import SearchBar from './SearchBar';
 import {Container, Row, Col} from 'react-bootstrap';
 import Paginations from "./Pagination";
-
+import pf from "../petfinder";
 
 const Search = ({location, favPets}) => {
   const history = useHistory();
@@ -38,6 +37,7 @@ const Search = ({location, favPets}) => {
       }
     }).catch(err => {
       console.log(err)
+      setResults([]);
     }).finally(() => {
         setLoading(false);
     });
@@ -52,6 +52,7 @@ const Search = ({location, favPets}) => {
   useEffect(() => {
     setPage(1);
     getSearchResults(setTotalPage);
+    console.log(results.length);
     // console.log("new results");
   }, [location.search])
 
@@ -61,7 +62,7 @@ const Search = ({location, favPets}) => {
       <Container>
         <Row><SearchBar /></Row>
         <Row className="flex align-content-center">
-            {!loading ? results.map(p => 
+            {!loading ? (results.length > 0 ? results.map(p => 
               <Col key={p.id} sm="6" md="4">
                 <PetThumbnail 
                   id={p.id}
@@ -70,9 +71,10 @@ const Search = ({location, favPets}) => {
                   age={p.age}
                   gender={p.gender}
                   isLiked={favPets.has(p.id)}
+                  petData = {p}
                   />
               </Col>
-              ) : <LoadingThumbnails count={24}/>}
+              ):  <h3>Sorry, no results could be found :/</h3> ) : <LoadingThumbnails count={24}/>}
         </Row>
         <Row className="justify-content-center">
           <Paginations handleChange={setPage} count={totalPage} page={page}/>

@@ -24,15 +24,11 @@ const SearchBar = props => {
             setValid(true);
         }
         const query = `location=${location}&distance=${distance}&type=${type}&age=${age}&size=${size}&gender=${gender}`;
-        console.log(query);
         history.push(`/search/?${query}`);
     };
  
     //Only for debugging
-    useEffect(() => {
-        console.log(filters);
-        console.log(valid);
-    }, [dispatch, filters])
+ 
     
   
     return(
