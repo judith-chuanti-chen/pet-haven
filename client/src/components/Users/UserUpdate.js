@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import * as Yup from "yup";
-import { Formik, Field } from "formik";
+import { Formik } from "formik";
 import { connect } from "react-redux";
-import { signupUser } from "../../store/actions/user_actions";
-
-//Role: 0 - user, 1 - admin
+import { updateUser } from "../../store/actions/user_actions";
 
 const SignUpSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid Email").required("Required Field"),
   password: Yup.string()
     .min(6, "Password is too short!")
     .required("Required Field"),
@@ -24,54 +21,35 @@ const SignUpSchema = Yup.object().shape({
   state: Yup.string().required("Required Field"),
   country: Yup.string().required("Required Field"),
   zipcode: Yup.number().required("Required Field"),
-  about: Yup.string(),
-  role: Yup.number(),
-
+  role: Yup.string(),
 });
 
-class UserSignup extends Component {
-  state = {
-    success: false,
-  };
-
-  componentDidUpdate() {
-    if (this.state.success) {
-      this.props.history.push("/log-in");
-    }
-  }
-
+class UserUpdate extends Component {
   render() {
     return (
       <div style={{ marginTop: "20px" }} className="container form_container">
-        <h1>Welcome to Pet Haven!</h1>
-        <hr></hr>
-        <h4>Sign-up</h4>
+        <h1>Update Your Information</h1>
         <Formik
           initialValues={{
-            email: "",
             password: "",
-            firstname: "",
-            lastname: "",
-            address1: "",
+            firstname: this.props.user.userData.firstname,
+            lastname: this.props.user.userData.lastname,
+            address1: this.props.user.userData.address1,
             address2: "",
-            phone: "",
-            city: "",
-            state: "",
-            country: "",
-            zipcode: "",
+            phone: this.props.user.userData.phone,
+            city: this.props.user.userData.city,
+            state: this.props.user.userData.state,
+            country: this.props.user.userData.country,
+            zipcode: this.props.user.userData.zipcode,
             role: 0,
-            about: "I love dogs and cats!",
+            about: this.props.user.userData.about,
           }}
           validationSchema={SignUpSchema}
           onSubmit={(values) => {
             console.log(values);
-            this.props.dispatch(signupUser(values)).then((response) => {
-              if (this.props.user.success) {
-                this.setState({
-                  success: true,
-                });
-              }
-            });
+            this.props
+              .dispatch(updateUser(this.props.user.userData._id, values))
+              .then((response) => {});
           }}
         >
           {({
@@ -84,23 +62,6 @@ class UserSignup extends Component {
           }) => {
             return (
               <form onSubmit={handleSubmit}>
-                <div>Email*</div>
-                <div className="form-group">
-                  <div className="twelve columns mt-2 mb-4">
-                    <input
-                      type="email"
-                      name="email"
-                      onBlur={handleBlur}
-                      onChange={handleChange}
-                      placeholder="Enter Email"
-                      value={values.email}
-                      className="u-full-width"
-                    ></input>
-                    {errors.email && touched.email ? (
-                      <div className="error-label">{errors.email}</div>
-                    ) : null}
-                  </div>
-                </div>
                 <div>Password*</div>
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
@@ -118,11 +79,11 @@ class UserSignup extends Component {
                     ) : null}
                   </div>
                 </div>
-                <div>First Name*</div>
+                <div>Firstname*</div>
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="text"
+                      type="firstname"
                       name="firstname"
                       onChange={handleChange}
                       placeholder="Enter Firstname"
@@ -134,11 +95,11 @@ class UserSignup extends Component {
                     ) : null}
                   </div>
                 </div>
-                <div>Last Name*</div>
+                <div>Lastname*</div>
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="text"
+                      type="lastname"
                       name="lastname"
                       onChange={handleChange}
                       placeholder="Enter Lastname"
@@ -154,7 +115,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="text"
+                      type="address1"
                       name="address1"
                       onChange={handleChange}
                       placeholder="Enter Address1"
@@ -170,7 +131,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="text"
+                      type="address2"
                       name="address2"
                       onChange={handleChange}
                       placeholder="Enter Address2"
@@ -202,7 +163,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="text"
+                      type="city"
                       name="city"
                       onChange={handleChange}
                       placeholder="Enter City"
@@ -218,7 +179,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="text"
+                      type="state"
                       name="state"
                       onChange={handleChange}
                       placeholder="Enter State"
@@ -234,7 +195,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="text"
+                      type="country"
                       name="country"
                       onChange={handleChange}
                       placeholder="Enter Country"
@@ -250,7 +211,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="text"
+                      type="zipcode"
                       name="zipcode"
                       onChange={handleChange}
                       placeholder="Enter Zipcode"
@@ -265,14 +226,14 @@ class UserSignup extends Component {
                 <div>Role</div>
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
-                    <Field name="role" className="u-full-width" as="select" onChange={handleChange}>
-                        <option
-                          value={0}
-                          className="u-full-width">User</option>
-                        <option
-                          value={1}
-                          className="u-full-width">Admin</option>
-                    </Field>
+                    <input
+                      type="role"
+                      name="role"
+                      onChange={handleChange}
+                      placeholder="Enter Role"
+                      value={values.role}
+                      className="u-full-width"
+                    ></input>
                     {errors.role && touched.role ? (
                       <div className="error-label">{errors.role}</div>
                     ) : null}
@@ -285,7 +246,7 @@ class UserSignup extends Component {
                       type="about"
                       name="about"
                       onChange={handleChange}
-                      placeholder="Write Something About Yourself"
+                      placeholder="Type Something About Yourself"
                       value={values.about}
                       className="u-full-width"
                     ></input>
@@ -294,11 +255,7 @@ class UserSignup extends Component {
                     ) : null}
                   </div>
                 </div>
-                <button type="submit">Sign Up</button>
-                <br />
-                {this.state.success ? (
-                  <div className="error_label">Error, Please try again.</div>
-                ) : null}
+                <button type="submit">Update</button>
               </form>
             );
           }}
@@ -314,4 +271,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(UserSignup);
+export default connect(mapStateToProps)(UserUpdate);

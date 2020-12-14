@@ -1,8 +1,9 @@
 //User
-export const USER_LOGIN = 'user_login';
-export const USER_AUTH = 'user_auth';
-export const USER_LOGOUT = 'user_logout';
-export const USER_SIGNUP = 'user_signup';
+export const USER_LOGIN = "user_login";
+export const USER_AUTH = "user_auth";
+export const USER_LOGOUT = "user_logout";
+export const USER_SIGNUP = "user_signup";
+export const USER_UPDATE = "user_update";
 
 //Filters in SearchBar
 export const SET_TYPE = "set_type";
@@ -15,4 +16,3 @@ export const SET_DISTANCE = "set_distance";
 //Favorite Pets
 export const ADD_FAV = "add_fav";
 export const DELETE_FAV = "delete_fav";
-

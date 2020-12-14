@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User } = require("../models/user");
 const { auth } = require("../middleware/auth");
+const user = require("../models/user");
 
 // POST /api/users/register
 router.post("/register", (req, res) => {
@@ -59,33 +60,35 @@ router.post("/login", (req, res) => {
             country: user.country,
             zipcode: user.zipcode,
             role: user.role,
+            about: user.about,
           },
         });
       });
     });
   });
 });
+
 // GET /api/users/auth
-// use the 'auth' middleware to validate tokens 
-router.get('/auth', auth, (req, res)=>{
-    res.json({
-        auth:true,
-        userData:{
-            id:req.user._id,
-            email: req.user.email,
-            firstname: req.user.firstname,
-            lastname: req.user.lastname,
-            address1: req.user.address1,
-            address2: req.user.address2,
-            city: req.user.city,
-            state: req.user.state,
-            country: req.user.country,
-            zipcode: req.user.zipcode,
-            role: req.user.role,
-            phone: req.user.phone
-        }
-    });
-});
+// use the 'auth' middleware to validate tokens
+router.get("/auth", auth, (req, res) => {
+  res.json({
+    auth: true,
+    userData: {
+      _id: req.user._id,
+      email: req.user.email,
+      firstname: req.user.firstname,
+      lastname: req.user.lastname,
+      address1: req.user.address1,
+      address2: req.user.address2,
+      phone: req.user.phone,
+      city: req.user.city,
+      state: req.user.state,
+      country: req.user.country,
+      zipcode: req.user.zipcode,
+      role: req.user.role,
+      about: req.user.about,
+    },
+  });
 
 
 // GET /api/users/logout
@@ -99,6 +102,43 @@ router.get("/logout", auth, (req, res) => {
     res.status(200).send("goodbye");
   });
 });
+
+// POST /api/users/update
+router.patch("/update/:id", auth, async (req, res) => {
+  try {
+    const userToUpdate = await User.findOne({ _id: req.params.id });
+    const {
+      password,
+      firstname,
+      lastname,
+      address1,
+      address2,
+      phone,
+      city,
+      state,
+      country,
+      zipcode,
+      about,
+    } = req.body;
+    userToUpdate.password = password;
+    userToUpdate.firstname = firstname;
+    userToUpdate.lastname = lastname;
+    userToUpdate.address1 = address1;
+    userToUpdate.address2 = address2;
+    userToUpdate.phone = phone;
+    userToUpdate.city = city;
+    userToUpdate.state = state;
+    userToUpdate.country = country;
+    userToUpdate.zipcode = zipcode;
+    userToUpdate.about = about;
+    await userToUpdate.save();
+    res.status(200).json({ success: true, userData: userToUpdate });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+
 module.exports = router;
 
 router.get("/all", auth, (req, res) => {

@@ -62,6 +62,9 @@ const userSchema = new mongoose.Schema({
   token: {
     type: String,
   },
+  about: {
+    type: String,
+  },
 });
 //pre-hook: do something before the event triggers
 userSchema.pre("save", function (next) {
@@ -123,20 +126,19 @@ userSchema.methods.deleteToken = function (token, callback) {
 
 //'statics' are the methods defined on the Model, 'methods' are defined on the document (instance).
 
-userSchema.statics.findByToken = function(token, callback){
-    let user = this; //this refer to User model
-    jwt.verify(token, config.SECRET, (err, decode) =>{
-        user.findOne({"_id": decode, "token": token}, (err, user)=>{
-            if(err)  {
-                console.log("models/user.js - findByToken err: " + err);
-                return callback(err);
-            }
+userSchema.statics.findByToken = function (token, callback) {
+  let user = this; //this refer to User model
+  jwt.verify(token, config.SECRET, (err, decode) => {
+    user.findOne({ _id: decode, token: token }, (err, user) => {
+      if (err) {
+        console.log("models/user.js - findByToken err: " + err);
+        return callback(err);
+      }
 
-            callback(null, user);
-        })
-    })
-}
-
+      callback(null, user);
+    });
+  });
+};
 
 const User = mongoose.model("User", userSchema);
 module.exports = { User };
