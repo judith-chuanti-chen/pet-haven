@@ -11,22 +11,20 @@ const SignUpSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Password is too short!")
     .required("Required Field"),
-  firstname: Yup.string()
-    .required("Required Field"),
-  lastname: Yup.string()
-    .required("Required Field"),
-  address1: Yup.string()
-    .required("Required Field"),
+  firstname: Yup.string().required("Required Field"),
+  lastname: Yup.string().required("Required Field"),
+  address1: Yup.string().required("Required Field"),
   address2: Yup.string(),
-  city: Yup.string()
-    .required("Required Field"),
-  state: Yup.string()
-    .required("Required Field"),
-  country: Yup.string()
-    .required("Required Field"),
-  zipcode: Yup.number()
-    .required("Required Field"),
-  role: Yup.number()
+  phone: Yup.string()
+    .required("Required Field")
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .min(10, "Must be exactly 10 digits")
+    .max(10, "Must be exactly 10 digits"),
+  city: Yup.string().required("Required Field"),
+  state: Yup.string().required("Required Field"),
+  country: Yup.string().required("Required Field"),
+  zipcode: Yup.number().required("Required Field"),
+  role: Yup.number(),
 });
 
 class UserSignup extends Component {
@@ -54,11 +52,12 @@ class UserSignup extends Component {
             lastname: "",
             address1: "",
             address2: "",
+            phone: "",
             city: "",
             state: "",
             country: "",
             zipcode: "",
-            role: ""
+            role: 0,
           }}
           validationSchema={SignUpSchema}
           onSubmit={(values) => {
@@ -66,7 +65,7 @@ class UserSignup extends Component {
             this.props.dispatch(signupUser(values)).then((response) => {
               if (this.props.user.success) {
                 this.setState({
-                    success: true,
+                  success: true,
                 });
               }
             });
@@ -180,6 +179,22 @@ class UserSignup extends Component {
                     ) : null}
                   </div>
                 </div>
+                <div>Phone Number*</div>
+                <div className="form-group">
+                  <div className="twelve columns mt-2 mb-4">
+                    <input
+                      type="phone"
+                      name="phone"
+                      onChange={handleChange}
+                      placeholder="Enter Phone Number"
+                      value={values.phone}
+                      className="u-full-width"
+                    ></input>
+                    {errors.phone && touched.phone ? (
+                      <div className="error-label">{errors.phone}</div>
+                    ) : null}
+                  </div>
+                </div>
                 <div>City*</div>
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
@@ -222,10 +237,10 @@ class UserSignup extends Component {
                       placeholder="Enter Country"
                       value={values.country}
                       className="u-full-width"
-                      ></input>
+                    ></input>
                     {errors.country && touched.country ? (
-                        <div className="error-label">{errors.country}</div>
-                        ) : null}
+                      <div className="error-label">{errors.country}</div>
+                    ) : null}
                   </div>
                 </div>
                 <div>Zipcode*</div>

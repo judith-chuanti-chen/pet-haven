@@ -4,6 +4,7 @@ import {
   faSignOutAlt,
   faUserAlt,
   faClipboard,
+  faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const RouteLinks = {
@@ -19,14 +20,14 @@ export const RouteLinks = {
       text: "Log In",
       link: "/log-in",
       color: "black",
-      restricted: true
+      restricted: true,
     },
     {
       icon: faUserAlt,
       text: "Sign Up",
       link: "/sign-up",
       color: "black",
-      restricted: true
+      restricted: true,
     },
   ],
   
@@ -64,6 +65,12 @@ export const RouteLinks = {
       icon: faClipboard,
       text: "Edit Users",
       link: "/editUsers",
+      color: "black",
+    },
+    {
+      icon: faUserCircle,
+      text: "Profile",
+      link: "/profile",
       color: "black",
     },
   ],
