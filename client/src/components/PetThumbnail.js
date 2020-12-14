@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+
+import { PetContext } from './Contexts/PetContext';
+
+import { useHistory } from "react-router-dom";
 import { favorite, unfavorite } from '../utils/manageFavoritePet';
 import Card from 'react-bootstrap/Card';
 import {Button, Row, Col, ButtonGroup} from 'react-bootstrap';
@@ -12,6 +16,7 @@ import Skeleton from 'react-loading-skeleton';
 const PetThumbnail = props => {
     const user = useSelector(state => state.user);
     const [like, setLike] = useState(props.isLiked);
+    const history = useHistory();
    
     const toggleLike = () => {
       if(like){
@@ -21,6 +26,12 @@ const PetThumbnail = props => {
         favorite(user.userData.id, props.id);
         setLike(true);
       }
+    };
+
+    const routeChange = () => {
+      console.log(props.p_info);
+      let path = `pageDetail/?id=${props.id}&name=${props.name}&age=${props.age}&gender=${props.gender}&image=${props.image}`; 
+      history.push(path);
     };
 
     return(
@@ -35,7 +46,7 @@ const PetThumbnail = props => {
               <Button variant="light" onClick={toggleLike}>
                 <FontAwesomeIcon icon={like ? solidHeart : regularHeart } size="lg"/>
                 </Button>
-              <Button  variant="primary">Check Me Out!</Button>
+              <Button  onClick={routeChange} >Check Me Out!</Button>
             </ButtonGroup>
           </Card.Body>
       </Card>

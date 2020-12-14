@@ -8,6 +8,8 @@ import SearchBar from './SearchBar';
 import {Container, Row, Col} from 'react-bootstrap';
 import Paginations from "./Pagination";
 
+import {PetContextProvider} from "./Contexts/PetContext"
+
 
 const Search = ({location, favPets}) => {
   const history = useHistory();
@@ -63,14 +65,15 @@ const Search = ({location, favPets}) => {
         <Row className="flex align-content-center">
             {!loading ? results.map(p => 
               <Col key={p.id} sm="6" md="4">
-                <PetThumbnail 
-                  id={p.id}
-                  image={p.primary_photo_cropped ? p.primary_photo_cropped.full : p.photos[0]}
-                  name={p.name}
-                  age={p.age}
-                  gender={p.gender}
-                  isLiked={favPets.has(p.id)}
-                  />
+                  <PetThumbnail 
+                    id={p.id}
+                    image={p.primary_photo_cropped ? p.primary_photo_cropped.full : p.photos[0]}
+                    name={p.name}
+                    age={p.age}
+                    gender={p.gender}
+                    isLiked={favPets.has(p.id)}
+                    p_info = {p}
+                    />
               </Col>
               ) : <LoadingThumbnails count={24}/>}
         </Row>
