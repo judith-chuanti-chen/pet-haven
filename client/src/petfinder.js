@@ -1,9 +1,7 @@
-import { Client } from '@petfinder/petfinder-js';
+import { Client } from "@petfinder/petfinder-js";
 
-const apiKey = '1jlU8rLOEnemnvVkuX5IL5epBJ4bVSwYHpX5nECg1zy6oBcqgu';
-const secret = 'EJOYWeT3t6t9TRyrpLxDv7S6KPzSOxTSwVq842CL';
-const client = new Client({apiKey: apiKey, secret: secret});
+const apiKey = "bG5yqfrsb4Du1ygyvF7GMNBULSeR9ge9aZY7nrGwjna9EKY0SL";
+const secret = "s4ttu7QkkP659BbIeuykAtPagI1WzG4jzVC4wOe9";
+const client = new Client({ apiKey: apiKey, secret: secret });
 
 export default client;
-
-

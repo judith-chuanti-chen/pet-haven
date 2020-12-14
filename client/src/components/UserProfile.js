@@ -4,6 +4,7 @@ import { faPhone, faMailBulk } from "@fortawesome/free-solid-svg-icons";
 import img from "../blank-profile-picture-973460_640.png";
 import UserUpdate from "./Users/UserUpdate";
 import { useSelector } from "react-redux";
+import FavoritePetHolder from "./FavoritePetHolder";
 
 const UserProfile = ({ props, location }) => {
   const [active, setActive] = useState([true, false]);
@@ -86,6 +87,11 @@ const UserProfile = ({ props, location }) => {
           >
             <UserUpdate />
           </div>
+          <FavoritePetHolder
+            className={`${
+              active[0] ? "displayed" : "not-displayed"
+            } fav-pet-holder`}
+          ></FavoritePetHolder>
         </div>
       </div>
     </div>
