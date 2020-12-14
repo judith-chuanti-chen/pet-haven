@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { getAllFavPets } from '../utils/manageFavoritePet';
 const authentication = function(ComposedClass, reload){
     class AuthenticationCheck extends Component{
-    
         state ={
             loading:true
         }

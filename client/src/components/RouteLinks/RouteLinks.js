@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export const RouteLinks = {
-  user: [
+  visitor: [
     {
       icon: faHome,
       text: "Home",
@@ -16,7 +16,7 @@ export const RouteLinks = {
     },
     {
       icon: faSignInAlt,
-      text: "Login",
+      text: "Log In",
       link: "/log-in",
       color: "black",
       restricted: true
@@ -27,6 +27,22 @@ export const RouteLinks = {
       link: "/sign-up",
       color: "black",
       restricted: true
+    },
+  ],
+  
+  user: [
+    {
+      icon: faHome,
+      text: "My Profile",
+      link: "/profile",
+      color: "black",
+    },
+
+    {
+      icon: faSignOutAlt,
+      text: "Log Out",
+      link: "/logout",
+      color: "black",
     },
   ],
 
@@ -40,7 +56,7 @@ export const RouteLinks = {
 
     {
       icon: faSignOutAlt,
-      text: "Logout",
+      text: "Log Out",
       link: "/logout",
       color: "black",
     },
@@ -51,4 +67,5 @@ export const RouteLinks = {
       color: "black",
     },
   ],
+
 };

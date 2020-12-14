@@ -71,7 +71,14 @@ router.get('/auth', auth, (req, res)=>{
             id:req.user._id,
             email: req.user.email,
             firstname: req.user.firstname,
-            lastname: req.user.lastname
+            lastname: req.user.lastname,
+            address1: req.user.address1,
+            address2: req.user.address2,
+            city: req.user.city,
+            state: req.user.state,
+            country: req.user.country,
+            zipcode: req.user.zipcode,
+            role: req.user.role
         }
     });
 });

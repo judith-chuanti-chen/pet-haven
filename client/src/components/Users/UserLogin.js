@@ -30,7 +30,7 @@ class UserLogin extends Component {
   componentDidUpdate() {
     if (this.state.success) {
       this.props.history.push("/");
-    }
+    };
   }
 
   render() {
@@ -41,8 +41,8 @@ class UserLogin extends Component {
         <h4>Sign-in</h4>
         <Formik
           initialValues={{
-            email: "example@gmail.com",
-            password: "myPassword123",
+            email: "",
+            password: "",
           }}
           validationSchema={LoginSchema}
           onSubmit={(values) => {

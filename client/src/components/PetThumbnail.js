@@ -32,9 +32,9 @@ const PetThumbnail = props => {
               <br/>{props.age } | {props.gender}
             </Card.Text>
             <ButtonGroup className="mt-auto">
-              <Button variant="light" onClick={toggleLike}>
+              {user.auth ? <Button variant="light" onClick={toggleLike}>
                 <FontAwesomeIcon icon={like ? solidHeart : regularHeart } size="lg"/>
-                </Button>
+                </Button> : <></>}
               <Button  variant="primary">Check Me Out!</Button>
             </ButtonGroup>
           </Card.Body>
