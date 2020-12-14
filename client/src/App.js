@@ -8,6 +8,8 @@ import UserProfile from "./components/UserProfile";
 import Admin from "./components/Users/Admin";
 import UserLogout from "./components/Users/UserLogout";
 import { useSelector } from "react-redux";
+import EditUsers from "./components/Users/Admin/EditUsers";
+import PetDetail from "./components/PetDetail";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,7 +20,7 @@ import "./skeleton.css";
 // Higher Order Component so all routes will use same layout
 import MainLayout from "./HigherOrderComponents/MainLayout";
 import Auth from "./HigherOrderComponents/auth";
-import EditUsers from "./components/Users/Admin/EditUsers";
+
 
 const App = () => {
   const history = createBrowserHistory();
@@ -34,6 +36,7 @@ const App = () => {
             <Route path="/sign-up" component={Auth(UserSignup, false)} />
             <Route path="/log-in" component={Auth(UserLogin, false)} />
             <Route path="/profile" component={Auth(UserProfile, true)} />
+            <Route path="/search/pageDetail" component={Auth(PetDetail)} />
             <Route path="/search" component={Auth(Search)} />
             <Route path="/manage-users" component={Auth(EditUsers)}/>
             <Route exact path="/" component={Auth(Home)} />

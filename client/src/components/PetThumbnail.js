@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { useHistory } from "react-router-dom";
 import { favorite, unfavorite } from '../utils/manageFavoritePet';
 import { addFavPet, deleteFavPet } from '../store/actions/favPet_actions';
 import Card from 'react-bootstrap/Card';
@@ -14,6 +16,8 @@ const PetThumbnail = props => {
     const user = useSelector(state => state.user);
     const [like, setLike] = useState(props.isLiked);
     const dispatch = useDispatch();
+    const history = useHistory();
+   
     const toggleLike = () => {
       if(like){
         unfavorite(user.userData._id, props.id);
@@ -24,6 +28,12 @@ const PetThumbnail = props => {
         dispatch(addFavPet(props.id));
         setLike(true);
       }
+    };
+
+    const routeChange = () => {
+      console.log(props.p_info);
+      let path = `pageDetail/?id=${props.id}&name=${props.name}&age=${props.age}&gender=${props.gender}&image=${props.image}`; 
+      history.push(path);
     };
 
     return(
@@ -37,8 +47,8 @@ const PetThumbnail = props => {
             <ButtonGroup className="mt-auto">
               {user.auth ? <Button variant="light" onClick={toggleLike}>
                 <FontAwesomeIcon icon={like ? solidHeart : regularHeart } size="lg"/>
-                </Button> : <></>}
-              <Button  variant="primary">Check Me Out!</Button>
+                </Button>: <></>}
+              <Button  onClick={routeChange} >Check Me Out!</Button>
             </ButtonGroup>
           </Card.Body>
       </Card>
