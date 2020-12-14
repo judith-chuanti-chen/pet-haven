@@ -1,5 +1,11 @@
 import axios from "axios";
-import { USER_LOGIN, USER_AUTH, USER_LOGOUT, USER_SIGNUP } from "../types";
+import {
+  USER_LOGIN,
+  USER_AUTH,
+  USER_LOGOUT,
+  USER_SIGNUP,
+  USER_UPDATE,
+} from "../types";
 
 /*========= USER ===========*/
 // const BASE_URL = 'https://pet-haven-api.herokuapp.com';
@@ -69,6 +75,44 @@ export function signupUser({
 
   return {
     type: USER_SIGNUP,
+    payload: request,
+  };
+}
+
+export function updateUser(
+  userid,
+  {
+    password,
+    firstname,
+    lastname,
+    address1,
+    address2,
+    phone,
+    city,
+    state,
+    country,
+    zipcode,
+    role,
+  }
+) {
+  const request = axios
+    .patch(`/api/users/update/${userid}`, {
+      password,
+      firstname,
+      lastname,
+      address1,
+      address2,
+      phone,
+      city,
+      state,
+      country,
+      zipcode,
+      role,
+    })
+    .then((response) => response.data);
+
+  return {
+    type: USER_UPDATE,
     payload: request,
   };
 }

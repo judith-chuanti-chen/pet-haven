@@ -7,7 +7,7 @@ import UserSignup from "./components/Users/UserSignup";
 import UserProfile from "./components/UserProfile";
 import Admin from "./components/Users/Admin";
 import UserLogout from "./components/Users/UserLogout";
-import { useSelector } from "react-redux"; 
+import { useSelector } from "react-redux";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,11 +19,9 @@ import "./skeleton.css";
 import MainLayout from "./HigherOrderComponents/MainLayout";
 import Auth from "./HigherOrderComponents/auth";
 
-
 const App = () => {
   const history = createBrowserHistory();
-  
-  
+
   return (
     <>
       <BrowserRouter history={history}>

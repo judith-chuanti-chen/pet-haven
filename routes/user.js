@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User } = require("../models/user");
 const { auth } = require("../middleware/auth");
+const user = require("../models/user");
 
 // POST /api/users/register
 router.post("/register", (req, res) => {
@@ -94,4 +95,39 @@ router.get("/logout", auth, (req, res) => {
     res.status(200).send("goodbye");
   });
 });
+
+// POST /api/users/update
+router.patch("/update/:id", auth, async (req, res) => {
+  try {
+    const userToUpdate = await User.findOne({ _id: req.params.id });
+    const {
+      password,
+      firstname,
+      lastname,
+      address1,
+      address2,
+      phone,
+      city,
+      state,
+      country,
+      zipcode,
+    } = req.body;
+    userToUpdate.password = password;
+    userToUpdate.firstname = firstname;
+    userToUpdate.lastname = lastname;
+    userToUpdate.address1 = address1;
+    userToUpdate.address2 = address2;
+    userToUpdate.phone = phone;
+    userToUpdate.city = city;
+    userToUpdate.state = state;
+    userToUpdate.country = country;
+    userToUpdate.zipcode = zipcode;
+    await userToUpdate.save();
+    res.status(200).json({ success: true });
+  } catch (err) {
+    console.log(err);
+    return res.json(err);
+  }
+});
+
 module.exports = router;

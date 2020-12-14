@@ -2,10 +2,10 @@ import { React, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faMailBulk } from "@fortawesome/free-solid-svg-icons";
 import img from "../blank-profile-picture-973460_640.png";
-import UserSignup from "./Users/UserSignup";
+import UserUpdate from "./Users/UserUpdate";
 import { useSelector } from "react-redux";
 
-const UserProfile = (props) => {
+const UserProfile = ({ props, location }) => {
   const [active, setActive] = useState([true, false]);
   let user = useSelector((state) => state.user);
 
@@ -31,7 +31,7 @@ const UserProfile = (props) => {
           <h3>
             {user.userData.firstname} {user.userData.lastname}
           </h3>
-          <div class="address">
+          <div className="address">
             <p className="state">
               {user.userData.city}, {user.userData.state}
             </p>
@@ -86,7 +86,7 @@ const UserProfile = (props) => {
               active[1] ? "displayed" : "not-displayed"
             } update-form`}
           >
-            <UserSignup />
+            <UserUpdate />
           </div>
         </div>
       </div>
