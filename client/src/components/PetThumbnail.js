@@ -16,11 +16,11 @@ const PetThumbnail = props => {
     const dispatch = useDispatch();
     const toggleLike = () => {
       if(like){
-        unfavorite(user.userData.id, props.id);
+        unfavorite(user.userData._id, props.id);
         dispatch(deleteFavPet(props.id));
         setLike(false);
       }else{
-        favorite(user.userData.id, props.id);
+        favorite(user.userData._id, props.id);
         dispatch(addFavPet(props.id));
         setLike(true);
       }

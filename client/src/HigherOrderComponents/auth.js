@@ -18,7 +18,7 @@ const authentication = function(ComposedClass, reload){
                 } else {
                     // Populate initial favPets in the app once user logged in
                     // if(this.props.favPets.size === 0){
-                        getAllFavPets(user.userData.id, (petIds) => {
+                        getAllFavPets(user.userData._id, (petIds) => {
                             petIds.forEach(petId => {
                                 this.props.dispatch(addFavPet(petId));
                             });   

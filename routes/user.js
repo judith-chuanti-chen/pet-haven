@@ -48,7 +48,7 @@ router.post("/login", (req, res) => {
         res.cookie("auth", user.token).json({
           auth: true,
           userData: {
-            id: user._id,
+            _id: user._id,
             email: user.email,
             firstname: user.firstname,
             lastname: user.lastname,
@@ -89,7 +89,7 @@ router.get("/auth", auth, (req, res) => {
       about: req.user.about,
     },
   });
-
+});
 
 // GET /api/users/logout
 router.get("/logout", auth, (req, res) => {
@@ -139,8 +139,6 @@ router.patch("/update/:id", auth, async (req, res) => {
   }
 });
 
-module.exports = router;
-
 router.get("/all", auth, (req, res) => {
     User.find({}, (err, users) =>{
         if(err) {
@@ -160,4 +158,6 @@ router.delete("/delete/:userId", auth, (req, res) => {
         }
         return res.status(200).json(user);
     });
-})
+});
+
+module.exports = router;
