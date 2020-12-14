@@ -8,6 +8,7 @@ import {Container, Row, Col} from 'react-bootstrap';
 import Paginations from "./Pagination";
 import pf from "../petfinder";
 
+
 const Search = ({location, favPets}) => {
   const history = useHistory();
   const filter = useSelector(state => state.filter);
@@ -64,15 +65,15 @@ const Search = ({location, favPets}) => {
         <Row className="flex align-content-center">
             {!loading ? (results.length > 0 ? results.map(p => 
               <Col key={p.id} sm="6" md="4">
-                <PetThumbnail 
-                  id={p.id}
-                  image={p.primary_photo_cropped ? p.primary_photo_cropped.full : p.photos[0]}
-                  name={p.name}
-                  age={p.age}
-                  gender={p.gender}
-                  isLiked={favPets.has(p.id)}
-                  petData = {p}
-                  />
+                  <PetThumbnail 
+                    id={p.id}
+                    image={p.primary_photo_cropped ? p.primary_photo_cropped.full : p.photos[0]}
+                    name={p.name}
+                    age={p.age}
+                    gender={p.gender}
+                    isLiked={favPets.has(p.id)}
+                    p_info = {p}
+                    />
               </Col>
               ):  <h3>Sorry, no results could be found :/</h3> ) : <LoadingThumbnails count={24}/>}
         </Row>
