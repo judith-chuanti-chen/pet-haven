@@ -140,13 +140,13 @@ router.patch("/update/:id", auth, async (req, res) => {
 });
 
 router.get("/all", auth, (req, res) => {
-    User.find({}, (err, users) =>{
-        if(err) {
-            console.log("get all users err: " + err);
-            return res.status(500).send(err);
-        }
-        return res.status(200).json(users);
-    });
+  User.find({}, (err, users) => {
+    if (err) {
+      console.log("get all users err: " + err);
+      return res.status(500).send(err);
+    }
+    return res.status(200).json(users);
+  });
 });
 
 router.delete("/delete/:userId", auth, (req, res) => {
@@ -161,3 +161,4 @@ router.delete("/delete/:userId", auth, (req, res) => {
 });
 
 module.exports = router;
+
