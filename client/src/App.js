@@ -18,6 +18,7 @@ import "./skeleton.css";
 // Higher Order Component so all routes will use same layout
 import MainLayout from "./HigherOrderComponents/MainLayout";
 import Auth from "./HigherOrderComponents/auth";
+import EditUsers from "./components/Users/Admin/EditUsers";
 
 const App = () => {
   const history = createBrowserHistory();
@@ -34,6 +35,7 @@ const App = () => {
             <Route path="/log-in" component={Auth(UserLogin, false)} />
             <Route path="/profile" component={Auth(UserProfile, true)} />
             <Route path="/search" component={Auth(Search)} />
+            <Route path="/manage-users" component={Auth(EditUsers)}/>
             <Route exact path="/" component={Auth(Home)} />
           </Switch>
         </MainLayout>

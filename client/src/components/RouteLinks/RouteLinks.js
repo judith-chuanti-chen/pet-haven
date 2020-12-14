@@ -2,13 +2,14 @@ import {
   faHome,
   faSignInAlt,
   faSignOutAlt,
-  faUserAlt,
+  faUserPlus,
   faClipboard,
   faUserCircle,
+  faUserCog
 } from "@fortawesome/free-solid-svg-icons";
 
 export const RouteLinks = {
-  user: [
+  visitor: [
     {
       icon: faHome,
       text: "Home",
@@ -17,23 +18,51 @@ export const RouteLinks = {
     },
     {
       icon: faSignInAlt,
-      text: "Login",
+      text: "Log In",
       link: "/log-in",
       color: "black",
       restricted: true,
     },
     {
-      icon: faUserAlt,
+      icon: faUserPlus,
       text: "Sign Up",
       link: "/sign-up",
       color: "black",
       restricted: true,
     },
   ],
+  
+  user: [
+    {
+      icon: faHome,
+      text: "Home",
+      link: "/",
+      color: "black",
+    },
+    {
+      icon: faUserCircle,
+      text: "My Profile",
+      link: "/profile",
+      color: "black",
+    },
+
+    {
+      icon: faSignOutAlt,
+      text: "Log Out",
+      link: "/logout",
+      color: "black",
+    },
+  ],
 
   admin: [
     {
       icon: faHome,
+      text: "Home",
+      link: "/",
+      color: "black",
+    },
+    {
+      icon: faUserCog,
       text: "Admin",
       link: "/admin",
       color: "black",
@@ -41,14 +70,14 @@ export const RouteLinks = {
 
     {
       icon: faSignOutAlt,
-      text: "Logout",
+      text: "Log Out",
       link: "/logout",
       color: "black",
     },
     {
       icon: faClipboard,
-      text: "Edit Users",
-      link: "/editUsers",
+      text: "Manage Users",
+      link: "/manage-users",
       color: "black",
     },
     {
@@ -58,4 +87,5 @@ export const RouteLinks = {
       color: "black",
     },
   ],
+
 };

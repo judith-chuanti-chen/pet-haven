@@ -1,5 +1,6 @@
-import { LocalConvenienceStoreOutlined } from '@material-ui/icons';
+import {addFavPet, deleteFavPet} from '../store/actions/favPet_actions';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 const favorite = (userId, petId) => {
     axios.post(`/api/favoritePets/create/${userId}/${petId}`)
@@ -8,6 +9,7 @@ const favorite = (userId, petId) => {
       }).catch(err => {
         console.log(err);
       });
+    
 };
 
 const unfavorite = (userId, petId) => {

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PetThumbnail from './PetThumbnail';
 import SearchBar from './SearchBar';
-import Container from 'react-bootstrap/Container';
-import Jumbotron from 'react-bootstrap/Jumbotron';
-const Home = () => {
+import {Container, Jumbotron, Row, Col} from 'react-bootstrap';
+
+const Home = (props) => {
     return(
         <>
             <Jumbotron fluid>
@@ -11,10 +11,12 @@ const Home = () => {
                     <h1>Pet Haven</h1>
                     <p>Find adoptable pets near you!</p>
                 </Container>
-                </Jumbotron>
-            <Container>
-                <SearchBar />
-            </Container>
+            </Jumbotron>
+            <Row >
+                <Col className="d-flex justify-content-center">
+                    <SearchBar />
+                </Col>
+            </Row>
         </>
     );
 };

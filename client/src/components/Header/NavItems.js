@@ -19,32 +19,35 @@ const NavItems = (props) => {
     </div>
   );
 
-  const showLinks = () =>
-    RouteLinks.user.map((item, i) => {
-
-        if(props.user.auth && item.restricted){
-            return null
-        }else {
-            return element(item,i)
-        }
+  const showVisitorLinks = () =>
+    RouteLinks.visitor.map((item, i) => {
+        return element(item, i);
     });
 
   const showAdminLinks = () =>
     RouteLinks.admin.map((item, i) => {
       return element(item, i);
     });
+  
+
+  const showUserLinks = () => 
+    RouteLinks.user.map((item, i) => {
+      return element(item, i);
+    });
+  
+  const showLinks = () => {
+    if(props.user.auth){
+      if(props.user.userData.role === 0){
+        return showUserLinks();
+      }
+      return showAdminLinks();
+    }
+    return showVisitorLinks();
+  }
 
   return (
     <div>
       {showLinks()}
-      { props.user.auth ?
-                <div>
-                    <div className="nav_split">
-                        Admin options
-                    </div>
-                    {showAdminLinks()}
-                </div>
-            :null}
     </div>
   );
 };

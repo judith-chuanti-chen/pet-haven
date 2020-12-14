@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import * as Yup from "yup";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import { connect } from "react-redux";
 import { signupUser } from "../../store/actions/user_actions";
+
+//Role: 0 - user, 1 - admin
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email("Invalid Email").required("Required Field"),
@@ -22,8 +24,9 @@ const SignUpSchema = Yup.object().shape({
   state: Yup.string().required("Required Field"),
   country: Yup.string().required("Required Field"),
   zipcode: Yup.number().required("Required Field"),
-  role: Yup.string(),
   about: Yup.string(),
+  role: Yup.number(),
+
 });
 
 class UserSignup extends Component {
@@ -40,22 +43,22 @@ class UserSignup extends Component {
   render() {
     return (
       <div style={{ marginTop: "20px" }} className="container form_container">
-        <h1>Welcome Join Us!</h1>
+        <h1>Welcome to Pet Haven!</h1>
         <hr></hr>
         <h4>Sign-up</h4>
         <Formik
           initialValues={{
-            email: "example@gmail.com",
-            password: "myPassword123",
-            firstname: "jack",
-            lastname: "black",
-            address1: "225 Terry Ave N",
+            email: "",
+            password: "",
+            firstname: "",
+            lastname: "",
+            address1: "",
             address2: "",
-            phone: 1234567890,
-            city: "Seattle",
-            state: "WA",
-            country: "US",
-            zipcode: 98109,
+            phone: "",
+            city: "",
+            state: "",
+            country: "",
+            zipcode: "",
             role: 0,
             about: "I love dogs and cats!",
           }}
@@ -115,11 +118,11 @@ class UserSignup extends Component {
                     ) : null}
                   </div>
                 </div>
-                <div>Firstname*</div>
+                <div>First Name*</div>
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="firstname"
+                      type="text"
                       name="firstname"
                       onChange={handleChange}
                       placeholder="Enter Firstname"
@@ -131,11 +134,11 @@ class UserSignup extends Component {
                     ) : null}
                   </div>
                 </div>
-                <div>Lastname*</div>
+                <div>Last Name*</div>
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="lastname"
+                      type="text"
                       name="lastname"
                       onChange={handleChange}
                       placeholder="Enter Lastname"
@@ -151,7 +154,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="address1"
+                      type="text"
                       name="address1"
                       onChange={handleChange}
                       placeholder="Enter Address1"
@@ -167,7 +170,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="address2"
+                      type="text"
                       name="address2"
                       onChange={handleChange}
                       placeholder="Enter Address2"
@@ -199,7 +202,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="city"
+                      type="text"
                       name="city"
                       onChange={handleChange}
                       placeholder="Enter City"
@@ -215,7 +218,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="state"
+                      type="text"
                       name="state"
                       onChange={handleChange}
                       placeholder="Enter State"
@@ -231,7 +234,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="country"
+                      type="text"
                       name="country"
                       onChange={handleChange}
                       placeholder="Enter Country"
@@ -247,7 +250,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="zipcode"
+                      type="text"
                       name="zipcode"
                       onChange={handleChange}
                       placeholder="Enter Zipcode"
@@ -262,14 +265,14 @@ class UserSignup extends Component {
                 <div>Role</div>
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
-                    <input
-                      type="role"
-                      name="role"
-                      onChange={handleChange}
-                      placeholder="Enter Role"
-                      value={values.role}
-                      className="u-full-width"
-                    ></input>
+                    <Field name="role" className="u-full-width" as="select" onChange={handleChange}>
+                        <option
+                          value={0}
+                          className="u-full-width">User</option>
+                        <option
+                          value={1}
+                          className="u-full-width">Admin</option>
+                    </Field>
                     {errors.role && touched.role ? (
                       <div className="error-label">{errors.role}</div>
                     ) : null}
