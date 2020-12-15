@@ -162,6 +162,7 @@
   display: flex;
 }
 
-.update-form.not-displayed {
+.update-form.not-displayed,
+.fav-pet-holder.not-displayed {
   display: none;
 }
