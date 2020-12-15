@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as Yup from "yup";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import { connect } from "react-redux";
 import { updateUser } from "../../store/actions/user_actions";
 
@@ -83,7 +83,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="firstname"
+                      type="text"
                       name="firstname"
                       onChange={handleChange}
                       placeholder="Enter Firstname"
@@ -99,7 +99,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="lastname"
+                      type="text"
                       name="lastname"
                       onChange={handleChange}
                       placeholder="Enter Lastname"
@@ -115,7 +115,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="address1"
+                      type="text"
                       name="address1"
                       onChange={handleChange}
                       placeholder="Enter Address1"
@@ -131,7 +131,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="address2"
+                      type="text"
                       name="address2"
                       onChange={handleChange}
                       placeholder="Enter Address2"
@@ -147,7 +147,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="phone"
+                      type="tel"
                       name="phone"
                       onChange={handleChange}
                       placeholder="Enter Phone Number"
@@ -163,7 +163,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="city"
+                      type="text"
                       name="city"
                       onChange={handleChange}
                       placeholder="Enter City"
@@ -179,7 +179,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="state"
+                      type="text"
                       name="state"
                       onChange={handleChange}
                       placeholder="Enter State"
@@ -195,7 +195,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="country"
+                      type="text"
                       name="country"
                       onChange={handleChange}
                       placeholder="Enter Country"
@@ -211,7 +211,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="zipcode"
+                      type="text"
                       name="zipcode"
                       onChange={handleChange}
                       placeholder="Enter Zipcode"
@@ -226,14 +226,14 @@ class UserUpdate extends Component {
                 <div>Role</div>
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
-                    <input
-                      type="role"
-                      name="role"
-                      onChange={handleChange}
-                      placeholder="Enter Role"
-                      value={values.role}
-                      className="u-full-width"
-                    ></input>
+                    <Field name="role" className="u-full-width" as="select" onChange={handleChange}>
+                        <option
+                          value={0}
+                          className="u-full-width">User</option>
+                        <option
+                          value={1}
+                          className="u-full-width">Admin</option>
+                    </Field>
                     {errors.role && touched.role ? (
                       <div className="error-label">{errors.role}</div>
                     ) : null}
@@ -243,7 +243,7 @@ class UserUpdate extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="about"
+                      type="text"
                       name="about"
                       onChange={handleChange}
                       placeholder="Type Something About Yourself"

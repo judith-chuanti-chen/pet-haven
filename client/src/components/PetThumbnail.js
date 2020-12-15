@@ -32,7 +32,7 @@ const PetThumbnail = props => {
 
     const routeChange = () => {
       console.log(props.p_info);
-      let path = `pageDetail/?id=${props.id}&name=${props.name}&age=${props.age}&gender=${props.gender}&image=${props.image}`; 
+      let path = `/pageDetail/?id=${props.id}&name=${props.name}&age=${props.age}&gender=${props.gender}&image=${props.image}`; 
       history.push(path);
     };
 

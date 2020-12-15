@@ -79,7 +79,7 @@ const PetDetail = ({user, location, favPets}) => {
                             <h5>
                                 <span>{result.contact.address.city}, {result.contact.address.state}</span>
                             </h5>
-                            <hr></hr>
+                            <hr />
                             <p>{petInfo.age} &bull; {petInfo.gender} &bull; {result.size} &bull; {result.color}</p>
                             <Button className="btn btn-info" variant="white" onClick={toggleLike}>
                                     <FontAwesomeIcon icon={like ? solidHeart : regularHeart } size="lg"/> Favorite {petInfo.name}
@@ -97,8 +97,10 @@ const PetDetail = ({user, location, favPets}) => {
                             <div style={{textAlign: "left", padding: "5px"}}>
                                 <Card.Text>
                                     {(petInfo.characteristics !== "") ? (
-                                    <div><b>Characteristics</b><br/>{petInfo.characteristics}</div> 
-                                    ): (<div></div>)}
+                                    <>
+                                        <b>Characteristics</b><br/>{petInfo.characteristics}
+                                    </>
+                                    ): (<></>)}
                                 </Card.Text>
                                 <Card.Text>
                                     <b>Description</b> 
@@ -130,15 +132,13 @@ const PetDetail = ({user, location, favPets}) => {
                                 <h1>Contact</h1>
                             </Col>
                             <Card.Body className="d-flex flex-column">
-                                <Card.Text>
-                                    <div style={{textAlign: "left"}}>
-                                        <b><FontAwesomeIcon icon={faMapMarker} size="lg"/>&nbsp;&nbsp;Location Address</b> 
-                                        <br/>{result.contact.address.city}, {result.contact.address.state}<hr/>
-                                        <b><FontAwesomeIcon icon={faEnvelope} size="lg"/>&nbsp;&nbsp;Email</b> 
-                                        <br/>{result.contact.email}<hr/>
-                                        <b><FontAwesomeIcon icon={faPhoneSquare} size="lg"/>&nbsp;&nbsp;Phone</b> 
-                                        <br/>{result.contact.phone}<hr/>
-                                    </div>
+                                <Card.Text style={{textAlign: "left"}}>
+                                    <b><FontAwesomeIcon icon={faMapMarker} size="lg"/>&nbsp;&nbsp;Location Address</b> 
+                                    <br/>{result.contact.address.city}, {result.contact.address.state}<hr/>
+                                    <b><FontAwesomeIcon icon={faEnvelope} size="lg"/>&nbsp;&nbsp;Email</b> 
+                                    <br/>{result.contact.email}<hr/>
+                                    <b><FontAwesomeIcon icon={faPhoneSquare} size="lg"/>&nbsp;&nbsp;Phone</b> 
+                                    <br/>{result.contact.phone}<hr/>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

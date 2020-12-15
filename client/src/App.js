@@ -36,7 +36,7 @@ const App = () => {
             <Route path="/sign-up" component={Auth(UserSignup, false)} />
             <Route path="/log-in" component={Auth(UserLogin, false)} />
             <Route path="/profile" component={Auth(UserProfile, true)} />
-            <Route path="/search/pageDetail" component={Auth(PetDetail)} />
+            <Route path="/pageDetail" component={Auth(PetDetail)} />
             <Route path="/search" component={Auth(Search)} />
             <Route path="/manage-users" component={Auth(EditUsers)}/>
             <Route exact path="/" component={Auth(Home)} />

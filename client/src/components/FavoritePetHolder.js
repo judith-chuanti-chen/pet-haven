@@ -9,6 +9,7 @@ const FavoritePetHolder = ({ setActive }) => {
   const favPets = useSelector((state) => state.favPets);
   const [results, setResults] = useState([]);
 
+
   const getResults = () => {
     let favPetArray = [...favPets];
     let tempRes = [];
@@ -17,6 +18,9 @@ const FavoritePetHolder = ({ setActive }) => {
         .show(petid)
         .then((resp) => {
           tempRes.push(resp.data.animal);
+        })
+        .catch(err =>{
+          console.log(err);
         })
         .finally(() => {
           setActive([true, false]);
@@ -52,7 +56,7 @@ const FavoritePetHolder = ({ setActive }) => {
                 age={p.age}
                 gender={p.gender}
                 isLiked={favPets.has(p.id)}
-                petData={p}
+                p_info={p}
               />
             </Col>
           ))
