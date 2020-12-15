@@ -186,7 +186,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="phone"
+                      type="tel"
                       name="phone"
                       onChange={handleChange}
                       placeholder="Enter Phone Number"
@@ -282,7 +282,7 @@ class UserSignup extends Component {
                 <div className="form-group">
                   <div className="twelve columns mt-2 mb-4">
                     <input
-                      type="about"
+                      type="text"
                       name="about"
                       onChange={handleChange}
                       placeholder="Write Something About Yourself"
