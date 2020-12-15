@@ -16,16 +16,7 @@ const authentication = function(ComposedClass, reload){
                 if(!user.auth){
                     if(reload){this.props.history.push('/log-in');}
                 } else {
-                    // Populate initial favPets in the app once user logged in
-                    // if(this.props.favPets.size === 0){
-                        getAllFavPets(user.userData.id, (petIds) => {
-                            petIds.forEach(petId => {
-                                this.props.dispatch(addFavPet(petId));
-                            });   
-                        });     
-                    // }
-                    console.log("Populated initial favPets: ");
-                    console.log(this.props.favPets);
+        
                     if(reload === false){
                         this.props.history.push('/admin');
                     }

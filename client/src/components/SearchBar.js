@@ -33,7 +33,7 @@ const SearchBar = props => {
   
     return(
         <>
-        <Form inline>
+        <Form inline className="mt-5 justify-content-center">
             <Form.Row className="d-flex align-items-center">
                     <Form.Group className="mr-3 d-flex align-items-center">
                         <Form.Label className="mr-2">Location</Form.Label>
@@ -92,11 +92,10 @@ const SearchBar = props => {
                         Search
                     </Button>
                 </div>
-                
             </Form.Row>
+            {valid ? null : <div className="error-label">For 'Pet Type', please choose either 'Dog' or 'Cat'</div>}
         </Form>
-        {valid ? null : <div className="error-label">For 'Pet Type', please choose either 'Dog' or 'Cat'</div>}
-
+       
     </>
    
     );

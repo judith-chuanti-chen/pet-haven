@@ -18,25 +18,28 @@ const Header = () => {
 
   return (
     <header>
-      <div className="open-nav">
-        <FontAwesomeIcon
-          className="bars"
-          icon={faBars}
-          onClick={() => {
-            ShowNav(true);
-          }}
-          style={{
-            color: "black",
-            padding: "10px",
-            cursor: "pointer",
-          }}
-          size="3x"
-        />
+      <div className="row d-flex align-items-center" style={{backgroundColor: "#219bad"}}>
+        <div className="open-nav">
+          <FontAwesomeIcon
+            className="bars"
+            icon={faBars}
+            onClick={() => {
+              ShowNav(true);
+            }}
+            style={{
+              color: "white",
+              padding: "10px",
+              cursor: "pointer",
+            }}
+            size="3x"
+          />
+        </div>
+        <MainNav showNav={mainNav} onHideNav={() => hideNav(false)} />
+        <Link style={{ textDecoration: "None", color: "white" }} to="/">
+          Pet Haven
+        </Link>
       </div>
-      <MainNav showNav={mainNav} onHideNav={() => hideNav(false)} />
-      <Link style={{ textDecoration: "None", color: "purple" }} to="/">
-        Pet Haven
-      </Link>
+      
     </header>
   );
 };

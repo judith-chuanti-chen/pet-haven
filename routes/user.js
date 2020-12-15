@@ -48,7 +48,7 @@ router.post("/login", (req, res) => {
         res.cookie("auth", user.token).json({
           auth: true,
           userData: {
-            id: user._id,
+            _id: user._id,
             email: user.email,
             firstname: user.firstname,
             lastname: user.lastname,
@@ -139,8 +139,6 @@ router.patch("/update/:id", auth, async (req, res) => {
   }
 });
 
-module.exports = router;
-
 router.get("/all", auth, (req, res) => {
   User.find({}, (err, users) => {
     if (err) {
@@ -152,12 +150,15 @@ router.get("/all", auth, (req, res) => {
 });
 
 router.delete("/delete/:userId", auth, (req, res) => {
-  const userId = req.params.userId;
-  User.findOneAndDelete({ _id: userId }, (err, user) => {
-    if (err) {
-      console.log("delete user err: " + err);
-      return res.status(500).send(err);
-    }
-    return res.status(200).json(user);
-  });
+    const userId = req.params.userId;
+    User.findOneAndDelete({_id: userId}, (err, user) =>{
+        if(err) {
+            console.log("delete user err: " + err);
+            return res.status(500).send(err);
+        }
+        return res.status(200).json(user);
+    });
 });
+
+module.exports = router;
+
