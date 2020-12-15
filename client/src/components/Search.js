@@ -60,8 +60,9 @@ const Search = ({location, favPets}) => {
 
   return (
     <>
+    <Col><SearchBar /> </Col>
+      
       <Container>
-        <Row><SearchBar /></Row>
         <Row className="flex align-content-center">
             {!loading ? (results.length > 0 ? results.map(p => 
               <Col key={p.id} sm="6" md="4">

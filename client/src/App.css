@@ -38,11 +38,12 @@
   background-color: rgb(238, 177, 177);
   border: rgb(199, 52, 52) solid 2px;
   border-radius: 1em;
-  padding: 1em;
+  padding: 0.5em;
 }
 
-.like:hover {
-  background-color: rgb(238, 81, 81);
+/* Home Style */
+.home h1 p {
+  font-family: "Montserrat", sans-serif;
 }
 
 /* User-Profile Style */
