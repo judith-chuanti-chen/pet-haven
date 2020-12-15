@@ -1,8 +1,12 @@
 var CACHE_NAME = 'pwa-pet-haven';
 var urlsToCache = [
   '/',
-  '/log-in',
-  '/logout'
+  '../build/static/css',
+  '../build/static/js',
+  '../build/static/media',
+  '../build/index.html',
+  '../build/logo192.png',
+  '../build/logo512.png'
 ];
 
 // Install a service worker
