@@ -5,18 +5,22 @@ import LoadingThumbnails from "./LoadingThumbnails";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import pf from "../petfinder";
 
-const FavoritePetHolder = () => {
-  const [results, setResults] = useState([]);
+const FavoritePetHolder = ({ setActive }) => {
   const favPets = useSelector((state) => state.favPets);
+  const [results, setResults] = useState([]);
 
   const getResults = () => {
-    const favPetArray = [...favPets];
-    console.log(results);
-    const tempRes = [];
+    let favPetArray = [...favPets];
+    let tempRes = [];
     favPetArray.forEach((petid) => {
-      pf.animal.show(petid).then((resp) => {
-        tempRes.push(resp.data.animal);
-      });
+      pf.animal
+        .show(petid)
+        .then((resp) => {
+          tempRes.push(resp.data.animal);
+        })
+        .finally(() => {
+          setActive([true, false]);
+        });
     });
     console.log(tempRes);
     setResults(tempRes);
@@ -24,6 +28,7 @@ const FavoritePetHolder = () => {
 
   useEffect(() => {
     getResults();
+    console.log(results);
     console.log(results.length > 0);
   }, [favPets]);
 
@@ -33,7 +38,7 @@ const FavoritePetHolder = () => {
         style={{ justifyContent: "center" }}
         className="flex align-content-center"
       >
-        {results.length > 0 ? (
+        {results.length === favPets.size ? (
           results.map((p) => (
             <Col key={p.id} sm="6" md="4">
               <PetThumbnail

@@ -7,8 +7,9 @@ import { useSelector } from "react-redux";
 import FavoritePetHolder from "./FavoritePetHolder";
 
 const UserProfile = ({ props, location }) => {
-  const [active, setActive] = useState([true, false]);
+  const [active, setActive] = useState([false, true]);
   let user = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     console.log(user);
@@ -87,11 +88,13 @@ const UserProfile = ({ props, location }) => {
           >
             <UserUpdate />
           </div>
-          <FavoritePetHolder
+          <div
             className={`${
               active[0] ? "displayed" : "not-displayed"
             } fav-pet-holder`}
-          ></FavoritePetHolder>
+          >
+            <FavoritePetHolder setActive={setActive}></FavoritePetHolder>
+          </div>
         </div>
       </div>
     </div>
