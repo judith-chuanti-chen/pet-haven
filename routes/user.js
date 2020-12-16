@@ -3,6 +3,8 @@ const router = express.Router();
 const { User } = require("../models/user");
 const { auth } = require("../middleware/auth");
 const user = require("../models/user");
+const csurf = require('csurf');
+
 
 // POST /api/users/register
 router.post("/register", (req, res) => {
@@ -103,7 +105,7 @@ router.get("/logout", auth, (req, res) => {
   });
 });
 
-// POST /api/users/update
+// PATCH /api/users/update
 router.patch("/update/:id", auth, async (req, res) => {
   try {
     const userToUpdate = await User.findOne({ _id: req.params.id });

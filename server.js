@@ -3,6 +3,7 @@ const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const csurf = require('csurf');
 const user = require('./routes/user');
 const favoritePet = require('./routes/favoritePet');
 const app = express();
@@ -26,8 +27,19 @@ connectDB();
 // app.use(cors(corsOptions));
 app.use(cors());
 app.use(express.json());
-app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+
+// app.use(csurf({
+//   cookie: {
+//     key: '_csrf-pet-haven',
+//     path: '/csrf',
+//     httpOnly: true,
+//     secure: process.env.NODE_ENV === 'production',
+//     maxAge: 3600 // 1-hour
+//   }
+// }));
 
 app.use(express.static('client/build'));
 
