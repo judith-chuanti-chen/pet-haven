@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect} from "react";
+import axios from 'axios';
 import Home from "./components/Home";
 import Search from "./components/Search";
 import NavBar from "./components/NavBar";
@@ -12,6 +13,7 @@ import EditUsers from "./components/Users/Admin/EditUsers";
 import PetDetail from "./components/PetDetail";
 import { createBrowserHistory } from "history";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./normalize.css";
@@ -24,12 +26,26 @@ import Auth from "./HigherOrderComponents/auth";
 
 const App = () => {
   const history = createBrowserHistory();
+  // const [cookies, setCookie] = useCookies(["_csrf-pet-haven"]); 
+  
+  // const getCsrfToken = () =>{
+  //   axios.get('/api/users/csrf')
+  //   .then(res => {
+  //     console.log(res);
+  //   }).catch(err => {
+  //     console.log(err);
+  //   })
+  // };
+
+  useEffect(() => {
+    // console.log(cookies);
+    // getCsrfToken();
+  });
 
   return (
     <>
       <BrowserRouter history={history}>
         <MainLayout>
-          {/* <NavBar /> */}
           <Switch>
             <Route path="/admin" component={Auth(Admin, true)} />
             <Route path="/logout" component={Auth(UserLogout, true)} />

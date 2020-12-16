@@ -1,13 +1,16 @@
 var CACHE_NAME = 'pwa-pet-haven';
+const OFFLINE_URL = 'offline.html';
 var urlsToCache = [
+  './offline.html',
   './index.html',
-//   '../build/static/css',
-//   '../build/static/js',
-//   '../build/static/media',
-//   '../build/index.html',
-//   '../build/logo192.png',
-//   '../build/logo512.png'
+  './static/js/main.chunk.js',
+  './static/js/0.chunk.js',
+  './static/js/0.chunk.js.map',
+  './static/js/bundle.js',
+  // './2bcf3269c5341f040900.hot-update.json'
 ];
+
+console.log(urlsToCache);
 
 // Install a service worker
 this.addEventListener('install', event => {
@@ -22,23 +25,40 @@ this.addEventListener('install', event => {
 });
 
 // Cache and return requests
-this.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
+this.addEventListener('fetch', event =>{
+  console.log("online", navigator.onLine);
+  if(!navigator.onLine){
+    console.log("offline mode");
+    return event.respondWith(
+      caches.open(CACHE_NAME).then(cache => {
+        return cache.match(OFFLINE_URL).then(resp => {
+            console.log(resp);
+            return resp
+          }
+        );
+      })
     )
+
+  }
+  event.respondWith(
+    fetch(event.request).then(resp => resp)
   );
+  // event.respondWith(
+  //   caches.match(event.request)
+  //     .then(function(response) {
+  //       // Return response as Cache is hit 
+  //       if (response) {
+  //         return response;
+  //       }
+  //       return fetch(event.request);
+  //     }
+  //   )
+  // );
 });
 
 // Update a service worker
 this.addEventListener('activate', event => {
-  var cacheWhitelist = ['pwa-task-manager'];
+  var cacheWhitelist = ['pwa-pet-haven'];
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(

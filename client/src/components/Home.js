@@ -2,14 +2,17 @@ import React, { useEffect } from 'react';
 import PetThumbnail from './PetThumbnail';
 import SearchBar from './SearchBar';
 import { getAllFavPets } from '../utils/manageFavoritePet';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector  } from 'react-redux';
 import { addFavPet } from '../store/actions/favPet_actions';
 import {Container, Jumbotron, Row, Col} from 'react-bootstrap';
+
 import logo from '../dog_cat_logo.png';
 
 let homeStyle = {fontFamily: "Montserrat, sans-serif"};
 
-const Home = ({user, favPets}) => {
+const Home = () => {
+    const user = useSelector(state => state.user);
+    const favPets = useSelector(state => state.favPets);
     const dispatch = useDispatch();
     const populateInitialFavPets = () => {
     // Populate initial favPets in the app if user is logged in
