@@ -3,10 +3,10 @@ const OFFLINE_URL = 'offline.html';
 var urlsToCache = [
   './offline.html',
   './index.html',
-  './static/js/main.chunk.js',
-  './static/js/0.chunk.js',
-  './static/js/0.chunk.js.map',
-  './static/js/bundle.js',
+  // './static/js/main.chunk.js',
+  // './static/js/0.chunk.js',
+  // './static/js/0.chunk.js.map',
+  // './static/js/bundle.js',
   // './2bcf3269c5341f040900.hot-update.json'
 ];
 
