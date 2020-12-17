@@ -166,3 +166,25 @@
 .fav-pet-holder.not-displayed {
   display: none;
 }
+
+@media screen and (max-width: 1024px) {
+  .main-body {
+    display: block;
+  }
+
+  .profile-side {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-body {
+    display: block;
+  }
+  .profile-side {
+    width: 100%;
+  }
+  .profile-img {
+    display: none;
+  }
+}

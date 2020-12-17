@@ -1,5 +1,5 @@
-import React, {useEffect} from "react";
-import axios from 'axios';
+import React, { useEffect } from "react";
+import axios from "axios";
 import Home from "./components/Home";
 import Search from "./components/Search";
 import NavBar from "./components/NavBar";
@@ -23,11 +23,10 @@ import "./skeleton.css";
 import MainLayout from "./HigherOrderComponents/MainLayout";
 import Auth from "./HigherOrderComponents/auth";
 
-
 const App = () => {
   const history = createBrowserHistory();
-  // const [cookies, setCookie] = useCookies(["_csrf-pet-haven"]); 
-  
+  // const [cookies, setCookie] = useCookies(["_csrf-pet-haven"]);
+
   // const getCsrfToken = () =>{
   //   axios.get('/api/users/csrf')
   //   .then(res => {
@@ -54,7 +53,7 @@ const App = () => {
             <Route path="/profile" component={Auth(UserProfile, true)} />
             <Route path="/pageDetail" component={Auth(PetDetail)} />
             <Route path="/search" component={Auth(Search)} />
-            <Route path="/manage-users" component={Auth(EditUsers)}/>
+            <Route path="/manage-users" component={Auth(EditUsers)} />
             <Route exact path="/" component={Auth(Home)} />
           </Switch>
         </MainLayout>
