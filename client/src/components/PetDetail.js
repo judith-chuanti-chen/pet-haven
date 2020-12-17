@@ -23,7 +23,6 @@ const PetDetail = ({user, location, favPets}) => {
                                             characteristics: ""});
     const getSingleResult = () => {
         setLoading(true);
-        console.log("my id", petInfo.id);
         pf.animal.show(petInfo.id).then(resp => {
             // Do something with resp.data.animals
             setResult(resp.data.animal);
@@ -73,7 +72,7 @@ const PetDetail = ({user, location, favPets}) => {
                 <Card className="m-3 shadow">
                     <Row>
                         <Jumbotron className="text-center" style={{width: "70em", background: "white"}}>    
-                            <h1 onClick={print}>
+                            <h1>
                                 {petInfo.name}
                             </h1>
                             <h5>

@@ -46,7 +46,7 @@ class UserUpdate extends Component {
           }}
           validationSchema={SignUpSchema}
           onSubmit={(values) => {
-            console.log(values);
+            // console.log(values);
             this.props
               .dispatch(updateUser(this.props.user.userData._id, values))
               .then((response) => {});

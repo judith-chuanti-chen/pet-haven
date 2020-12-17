@@ -5,11 +5,11 @@ const favPetsReducer = (state=new Set(), action) => {
     switch(action.type){
         case ADD_FAV:
             favPets.add(action.payload);
-            console.log(favPets);
+            // console.log(favPets);
             return favPets;
         case DELETE_FAV:
             favPets.delete(action.payload);
-            console.log(favPets);
+            // console.log(favPets);
             return favPets;
         default:
             return state;

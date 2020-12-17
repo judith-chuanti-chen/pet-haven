@@ -53,8 +53,6 @@ const Search = ({location, favPets}) => {
   useEffect(() => {
     setPage(1);
     getSearchResults(setTotalPage);
-    console.log(results.length);
-    // console.log("new results");
   }, [location.search])
 
 

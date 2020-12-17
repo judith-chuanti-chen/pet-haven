@@ -12,7 +12,6 @@ const UserProfile = ({ props, location }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(user);
   }, []);
 
   const handleClick = (e) => {
@@ -20,7 +19,6 @@ const UserProfile = ({ props, location }) => {
       return (entry = !entry);
     });
     setActive(newArr);
-    console.log(active);
   };
 
   return (

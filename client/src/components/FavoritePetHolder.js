@@ -26,14 +26,11 @@ const FavoritePetHolder = ({ setActive }) => {
           setActive([true, false]);
         });
     });
-    console.log(tempRes);
     setResults(tempRes);
   };
 
   useEffect(() => {
     getResults();
-    console.log(results);
-    console.log(results.length > 0);
   }, [favPets]);
 
   return (

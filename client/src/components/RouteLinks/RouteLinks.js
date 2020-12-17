@@ -62,13 +62,6 @@ export const RouteLinks = {
       color: "black",
     },
     {
-      icon: faUserCog,
-      text: "Admin",
-      link: "/admin",
-      color: "black",
-    },
-
-    {
       icon: faSignOutAlt,
       text: "Log Out",
       link: "/logout",

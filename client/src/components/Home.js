@@ -24,8 +24,6 @@ const Home = () => {
                 });   
             });     
         }
-        console.log("Populated initial favPets: ");
-        console.log(favPets);
     }
 
     useEffect(() => {
