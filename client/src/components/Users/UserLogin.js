@@ -46,7 +46,7 @@ class UserLogin extends Component {
           }}
           validationSchema={LoginSchema}
           onSubmit={(values) => {
-            console.log(values);
+            // console.log(values);
             this.props.dispatch(loginUser(values)).then((response) => {
               if (!this.props.user.auth) {
                 this.setState({

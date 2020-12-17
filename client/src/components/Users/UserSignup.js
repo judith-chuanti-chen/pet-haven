@@ -64,7 +64,7 @@ class UserSignup extends Component {
           }}
           validationSchema={SignUpSchema}
           onSubmit={(values) => {
-            console.log(values);
+            // console.log(values);
             this.props.dispatch(signupUser(values)).then((response) => {
               if (this.props.user.success) {
                 this.setState({
